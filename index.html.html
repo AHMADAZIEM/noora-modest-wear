@@ -1,0 +1,2337 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noora Modest Wear | Keanggunan dalam Kesederhanaan</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Custom Palette & Typography -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            noora: {
+              ivory: '#FAF7F2',
+              cream: '#F3EDE2',
+              sage: '#5F7161',
+              sageDark: '#48574A',
+              taupe: '#D0C9C0',
+              gold: '#C5A059',
+              goldDark: '#A8843E',
+              charcoal: '#2C2C2C',
+              muted: '#666666'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-noora-ivory text-noora-charcoal font-sans antialiased selection:bg-noora-sage selection:text-white overflow-x-hidden">
+
+  <!-- =========================================================
+       1. TOP ANNOUNCEMENT BAR (BILINGUAL)
+  ========================================================== -->
+  <div class="bg-noora-sage text-white text-xs sm:text-sm py-2.5 px-4 text-center tracking-wide">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2">
+      <span id="announcement-text">✨ Penghantaran Percuma seluruh Malaysia untuk pembelian melebihi RM 250 |</span>
+      <button 
+        onclick="copyVoucherCode('NOORARAYA')" 
+        class="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 border border-white/30 px-2.5 py-0.5 rounded-full font-semibold text-amber-200 transition-all cursor-pointer"
+      >
+        <span id="announcement-code-label">Kod: NOORARAYA</span>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       2. STICKY NAVIGATION HEADER WITH INSTANT BM | EN SWITCHER
+  ========================================================== -->
+  <header class="sticky top-0 z-40 bg-noora-ivory/95 backdrop-blur-md border-b border-noora-taupe/70 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+      
+      <!-- Brand Logo -->
+      <a href="#utama" class="flex items-center gap-3 group shrink-0">
+        <div class="w-10 h-10 rounded-full border border-noora-gold/70 bg-noora-cream flex items-center justify-center text-noora-sage font-serif text-2xl font-bold shadow-2xs group-hover:border-noora-sage transition-colors">
+          N
+        </div>
+        <div>
+          <span class="block font-serif text-xl sm:text-2xl font-bold tracking-wider text-noora-charcoal leading-none">NOORA</span>
+          <span class="block text-[9px] sm:text-[10px] uppercase tracking-[0.28em] text-noora-gold font-semibold mt-0.5">Modest Wear</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav id="desktop-nav" class="hidden lg:flex items-center gap-7 text-sm font-medium text-noora-charcoal/85">
+        <!-- Populated dynamically via JS -->
+      </nav>
+
+      <!-- Right Actions: Language Switcher, Search, Wishlist, Bag & Mobile Menu -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5">
+        
+        <!-- Instant Bilingual Toggle Pill (BM | EN) -->
+        <div class="inline-flex items-center bg-noora-cream border border-noora-taupe rounded-full p-0.5 text-xs font-bold shadow-2xs" role="group" aria-label="Language Switcher">
+          <button 
+            id="lang-btn-bm" 
+            onclick="setLanguage('bm')" 
+            class="px-2.5 py-1 rounded-full transition-all cursor-pointer bg-noora-sage text-white"
+          >
+            BM
+          </button>
+          <button 
+            id="lang-btn-en" 
+            onclick="setLanguage('en')" 
+            class="px-2.5 py-1 rounded-full transition-all cursor-pointer text-noora-charcoal hover:text-noora-sage"
+          >
+            EN
+          </button>
+        </div>
+
+        <!-- Search Toggle -->
+        <button id="toggle-search-btn" aria-label="Search" class="p-2 sm:p-2.5 rounded-full hover:bg-noora-cream text-noora-charcoal transition-colors cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path stroke-linecap="round" d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
+
+        <!-- Wishlist Counter Button -->
+        <button onclick="openWishlistModal()" aria-label="Wishlist" class="relative p-2 sm:p-2.5 rounded-full hover:bg-noora-cream text-noora-charcoal transition-colors cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+          </svg>
+          <span id="wishlist-badge" class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 text-[10px] font-bold bg-noora-gold text-white rounded-full flex items-center justify-center">0</span>
+        </button>
+
+        <!-- Shopping Bag Trigger -->
+        <button id="open-cart-btn" aria-label="Shopping Bag" class="relative flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-noora-sage hover:bg-noora-sageDark text-white text-xs sm:text-sm font-medium shadow-xs transition-all active:scale-95 cursor-pointer">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+          </svg>
+          <span id="nav-bag-label" class="hidden md:inline">Beg Beli-Belah</span>
+          <span id="cart-badge" class="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-bold bg-noora-gold text-white rounded-full">0</span>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" aria-label="Open Menu" class="lg:hidden p-2 rounded-full hover:bg-noora-cream text-noora-charcoal cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Expandable Search Bar -->
+    <div id="search-bar-container" class="hidden border-t border-noora-taupe/60 bg-noora-cream/80 px-4 py-3">
+      <div class="max-w-2xl mx-auto relative flex items-center">
+        <svg class="w-4 h-4 text-noora-muted absolute left-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path stroke-linecap="round" d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Cari abaya, kebarung, tudung bawal, khimar, atau set sedondon..." 
+          class="w-full pl-11 pr-20 py-2.5 rounded-full bg-white border border-noora-taupe text-sm text-noora-charcoal placeholder:text-noora-muted focus:outline-none focus:border-noora-sage"
+        />
+        <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-4 text-xs font-semibold text-noora-sage hover:underline cursor-pointer">Reset</button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu (Includes Language Switcher & Links) -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-noora-ivory border-t border-noora-taupe/60 px-4 py-4 space-y-2">
+      <div id="mobile-nav-links" class="space-y-1">
+        <!-- Populated dynamically via JS -->
+      </div>
+      <div class="pt-3 mt-2 border-t border-noora-taupe/60 flex items-center justify-between px-3">
+        <span id="mobile-lang-label" class="text-xs font-semibold text-noora-muted">Bahasa / Language:</span>
+        <div class="inline-flex items-center bg-noora-cream border border-noora-taupe rounded-full p-0.5 text-xs font-bold">
+          <button id="mobile-lang-bm" onclick="setLanguage('bm')" class="px-3 py-1 rounded-full bg-noora-sage text-white">BM</button>
+          <button id="mobile-lang-en" onclick="setLanguage('en')" class="px-3 py-1 rounded-full text-noora-charcoal">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       3. EDITORIAL HERO SECTION
+  ========================================================== -->
+  <section id="utama" class="relative overflow-hidden bg-gradient-to-br from-noora-ivory via-noora-cream/80 to-noora-taupe/30 border-b border-noora-taupe/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Left Editorial Copy -->
+        <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/85 border border-noora-gold/50 text-xs font-semibold tracking-widest uppercase text-noora-goldDark">
+            <span id="hero-eyebrow">Edisi Raya & Harian • Kuala Lumpur</span>
+          </div>
+
+          <h1 id="hero-title" class="font-serif text-4xl sm:text-5xl lg:text-[64px] font-bold text-noora-charcoal leading-[1.08] tracking-tight">
+            Keanggunan Abadi dalam <span class="italic font-semibold text-noora-sage">Kesederhanaan</span>
+          </h1>
+
+          <p id="hero-subtitle" class="text-base sm:text-lg text-noora-muted max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            Direka khas untuk wanita muslimah moden dengan potongan labuh yang santun, fabrik premium yang sejuk di iklim tropika, serta sentuhan jahitan butik eksklusif.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#koleksi" id="hero-cta-primary" class="w-full sm:w-auto px-8 py-4 rounded-full bg-noora-sage hover:bg-noora-sageDark text-white font-semibold text-sm tracking-wide shadow-lg shadow-noora-sage/20 transition-all hover:-translate-y-0.5 text-center">
+              Lihat Koleksi
+            </a>
+            <a href="#koleksi" onclick="filterByCategory('Set & Family')" id="hero-cta-secondary" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white/95 hover:bg-white border border-noora-taupe text-noora-charcoal font-semibold text-sm transition-all text-center">
+              Koleksi Raya & Sedondon
+            </a>
+          </div>
+
+          <!-- Editorial Metrics -->
+          <div id="hero-stats" class="pt-6 grid grid-cols-3 gap-4 border-t border-noora-taupe/60 max-w-md mx-auto lg:mx-0">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Right Editorial Image Frame -->
+        <div class="lg:col-span-6">
+          <div class="relative max-w-lg mx-auto">
+            <div class="absolute -inset-3 sm:-inset-4 rounded-t-[180px] rounded-b-3xl border border-noora-gold/55 pointer-events-none"></div>
+            
+            <div class="relative rounded-t-[170px] rounded-b-3xl overflow-hidden bg-noora-taupe/40 aspect-[4/5] shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=900&q=85" 
+                onerror="this.onerror=null;this.src='https://placehold.co/720x900/D0C9C0/2C2C2C?text=Noora+Modest+Editorial';"
+                alt="Noora Modest Wear Editorial" 
+                class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute bottom-4 left-4 right-4 bg-noora-ivory/95 backdrop-blur-md border border-noora-taupe/70 rounded-2xl p-4 flex items-center justify-between">
+                <div>
+                  <p id="hero-card-tag" class="text-[10px] uppercase tracking-widest text-noora-goldDark font-bold">Pilihan Utama Musim Ini</p>
+                  <p class="font-serif text-lg font-bold text-noora-charcoal">Safiya Armani Silk Abaya</p>
+                </div>
+                <button onclick="openQuickView('safiya-silk-abaya')" id="hero-card-btn" class="px-4 py-2 rounded-full bg-noora-sage text-white text-xs font-semibold hover:bg-noora-sageDark transition-colors cursor-pointer">
+                  Lihat Saiz
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       4. BRAND PILLARS / TRUST BAR (4 FEATURES)
+  ========================================================== -->
+  <section id="tentang" class="py-12 sm:py-16 bg-noora-cream/70 border-b border-noora-taupe/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="trust-pillars-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       5. INTERACTIVE PRODUCT CATALOG (8 PRODUCTS IN RM)
+  ========================================================== -->
+  <section id="koleksi" class="py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span id="catalog-eyebrow" class="text-xs font-bold uppercase tracking-[0.25em] text-noora-goldDark">Kurasi Eksklusif</span>
+        <h2 id="catalog-title" class="font-serif text-3xl sm:text-5xl font-bold text-noora-charcoal mt-2">Koleksi Busana & Hijab</h2>
+        <p id="catalog-subtitle" class="mt-3 text-sm sm:text-base text-noora-muted">Pilih warna dan saiz kegemaran anda, atau klik Paparan Pantas untuk menyemak jadual ukuran dalam cm & inci.</p>
+      </div>
+
+      <!-- Filter Tabs & Sort Bar -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-8 mb-8 border-b border-noora-taupe/70">
+        <!-- Category Pills -->
+        <div id="category-tabs" class="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Product Count & Sort Select -->
+        <div class="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+          <span id="product-count-label" class="text-xs text-noora-muted font-medium">Menunjukkan 8 produk</span>
+          <select id="sort-select" onchange="applyFiltersAndSort()" class="px-4 py-2.5 rounded-full bg-white border border-noora-taupe text-xs sm:text-sm font-medium text-noora-charcoal focus:outline-none focus:border-noora-sage cursor-pointer">
+            <!-- Options populated via JS -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <!-- Cards rendered dynamically -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       6. LOOKBOOK / STYLING INSPIRATION SECTION
+  ========================================================== -->
+  <section id="gaya" class="py-16 sm:py-24 bg-noora-cream/80 border-y border-noora-taupe/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span id="lookbook-eyebrow" class="text-xs font-bold uppercase tracking-[0.25em] text-noora-goldDark">Inspirasi Gaya</span>
+          <h2 id="lookbook-title" class="font-serif text-3xl sm:text-5xl font-bold text-noora-charcoal mt-2">Gaya Santun Sepanjang Hari</h2>
+        </div>
+        <p id="lookbook-desc" class="text-sm text-noora-muted max-w-md">
+          Padankan helaian abaya, kebarung moden, dan selendang voal kami untuk ke pejabat, majlis ilmu, mahupun kunjungan Aidilfitri.
+        </p>
+      </div>
+
+      <div id="lookbook-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       7. CUSTOMER REVIEWS SECTION
+  ========================================================== -->
+  <section class="py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span id="reviews-eyebrow" class="text-xs font-bold uppercase tracking-[0.25em] text-noora-goldDark">Ulasan Pelanggan</span>
+        <h2 id="reviews-title" class="font-serif text-3xl sm:text-4xl font-bold text-noora-charcoal mt-2">Dipercayai Wanita Muslimah</h2>
+      </div>
+
+      <div id="reviews-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       8. FOOTER WITH NEWSLETTER & KUALA LUMPUR / SELANGOR STORE INFO
+  ========================================================== -->
+  <footer class="bg-noora-charcoal text-noora-ivory pt-16 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="footer-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/15">
+        <!-- Populated dynamically via JS -->
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-noora-taupe/80">
+        <p id="footer-copyright">© 2026 Noora Modest Wear Malaysia. Hak Cipta Terpelihara.</p>
+        <p id="footer-tagline">Keanggunan dalam Kesederhanaan • Kuala Lumpur & Selangor</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       9. QUICK VIEW PRODUCT MODAL (CM & INCHES SIZE CHART)
+  ========================================================== -->
+  <div id="quick-view-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/65 backdrop-blur-xs overflow-y-auto">
+    <div class="bg-noora-ivory border border-noora-taupe rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl my-8 relative">
+      <button onclick="closeQuickView()" aria-label="Close" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/95 hover:bg-white border border-noora-taupe flex items-center justify-center text-noora-charcoal shadow-sm cursor-pointer">
+        ✕
+      </button>
+      <div id="quick-view-content" class="grid grid-cols-1 md:grid-cols-12">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       10. STANDALONE SIZE GUIDE MODAL (CM & INCHES)
+  ========================================================== -->
+  <div id="size-guide-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/65 backdrop-blur-xs">
+    <div id="size-guide-content" class="bg-noora-ivory border border-noora-taupe rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl space-y-6 relative">
+      <!-- Populated dynamically via JS -->
+    </div>
+  </div>
+
+  <!-- =========================================================
+       11. WISHLIST MODAL
+  ========================================================== -->
+  <div id="wishlist-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/65 backdrop-blur-xs">
+    <div class="bg-noora-ivory border border-noora-taupe rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-5 relative max-h-[85vh] flex flex-col">
+      <div class="flex items-center justify-between border-b border-noora-taupe/60 pb-4">
+        <h3 id="wishlist-modal-title" class="font-serif text-2xl font-bold text-noora-charcoal">Senarai Hajat Anda</h3>
+        <button onclick="closeWishlistModal()" class="w-9 h-9 rounded-full bg-noora-cream hover:bg-noora-taupe/50 flex items-center justify-center text-noora-charcoal cursor-pointer">✕</button>
+      </div>
+      <div id="wishlist-items-container" class="flex-1 overflow-y-auto space-y-3 pr-1">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       12. SLIDE-OVER SHOPPING BAG DRAWER
+  ========================================================== -->
+  <div id="cart-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-300"></div>
+
+  <aside id="cart-drawer" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-noora-ivory border-l border-noora-taupe shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- Drawer Header -->
+    <div class="p-5 sm:p-6 border-b border-noora-taupe/70 bg-white flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <h3 id="drawer-title" class="font-serif text-2xl font-bold text-noora-charcoal">Beg Beli-Belah</h3>
+        <span id="drawer-count" class="px-2.5 py-0.5 text-xs font-bold bg-noora-sage text-white rounded-full">0</span>
+      </div>
+      <button id="close-cart-btn" aria-label="Close Cart" class="p-2 rounded-full hover:bg-noora-cream text-noora-charcoal transition-colors cursor-pointer">
+        ✕
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress Banner (Target RM 250) -->
+    <div id="shipping-progress-bar" class="bg-noora-cream px-5 py-3 text-xs text-center text-noora-charcoal border-b border-noora-taupe/60">
+      <!-- Updated dynamically -->
+    </div>
+
+    <!-- Cart Items -->
+    <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-4">
+      <!-- Populated dynamically -->
+    </div>
+
+    <!-- Cart Summary, Promo Code & Dual Checkout Actions -->
+    <div class="p-5 sm:p-6 border-t border-noora-taupe/80 bg-white space-y-4">
+      <!-- Promo Voucher Input -->
+      <div>
+        <div class="flex gap-2">
+          <input 
+            type="text" 
+            id="promo-code-input" 
+            placeholder="Kod baucar (NOORARAYA / NOORABERKAH)" 
+            class="flex-1 px-3.5 py-2 rounded-xl bg-noora-ivory border border-noora-taupe text-xs uppercase font-medium text-noora-charcoal focus:outline-none focus:border-noora-sage"
+          />
+          <button id="apply-promo-btn" onclick="applyPromoCode()" class="px-4 py-2 rounded-xl bg-noora-charcoal hover:bg-noora-sage text-white text-xs font-semibold transition-colors cursor-pointer">
+            Guna
+          </button>
+        </div>
+        <p id="promo-status-msg" class="text-[11px] mt-1.5 hidden"></p>
+      </div>
+
+      <!-- Price Breakdown -->
+      <div class="space-y-1.5 text-xs sm:text-sm pt-2 border-t border-noora-taupe/50">
+        <div class="flex justify-between text-noora-muted">
+          <span id="subtotal-label">Jumlah Kecil</span>
+          <span id="cart-subtotal">RM 0.00</span>
+        </div>
+        <div id="discount-row" class="hidden justify-between text-emerald-700 font-medium">
+          <span id="discount-label">Diskaun Baucar (10%)</span>
+          <span id="cart-discount">-RM 0.00</span>
+        </div>
+        <div class="flex justify-between text-base font-bold text-noora-charcoal pt-1.5">
+          <span id="total-label">Jumlah Keseluruhan</span>
+          <span id="cart-total-price" class="font-serif text-xl">RM 0.00</span>
+        </div>
+      </div>
+
+      <!-- Checkout Buttons: WhatsApp & Direct Checkout -->
+      <div class="space-y-2.5">
+        <button 
+          id="wa-checkout-btn"
+          onclick="checkoutViaWhatsApp()"
+          class="w-full py-3 px-5 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+          </svg>
+          <span id="wa-btn-label">Tempah melalui WhatsApp</span>
+        </button>
+
+        <button 
+          id="direct-checkout-btn"
+          onclick="openDirectCheckoutModal()"
+          class="w-full py-3 px-5 rounded-full bg-noora-sage hover:bg-noora-sageDark disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold text-sm transition-all cursor-pointer"
+        >
+          Teruskan Pembayaran
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =========================================================
+       13. DIRECT CHECKOUT & WHATSAPP ORDER MODAL + TOAST
+  ========================================================== -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/65 backdrop-blur-xs">
+    <div id="checkout-modal-content" class="bg-noora-ivory border border-noora-taupe rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5">
+      <!-- Populated dynamically -->
+    </div>
+  </div>
+
+  <div id="toast-box" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-noora-charcoal text-white px-5 py-3 rounded-full shadow-2xl border border-noora-gold/40 flex items-center gap-2.5 text-xs sm:text-sm font-medium">
+      <span class="w-2 h-2 rounded-full bg-noora-gold"></span>
+      <span id="toast-message"></span>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       14. FULL BILINGUAL ENGINE & E-COMMERCE LOGIC
+  ========================================================== -->
+  <script>
+    // Malaysian Business WhatsApp Number (Format: 601...)
+    const SELLER_WHATSAPP_NUMBER = '60123456789';
+
+    // Active Language State ('bm' = Bahasa Melayu, 'en' = English)
+    let currentLang = 'bm';
+
+    // Complete Bilingual Dictionary (UI, Categories, Pillars, Lookbook, Reviews, Checkout)
+    const i18n = {
+      bm: {
+        announcementText: '✨ Penghantaran Percuma seluruh Malaysia untuk pembelian melebihi RM 250 |',
+        announcementCode: 'Kod: NOORARAYA',
+        nav: {
+          home: 'Utama',
+          collection: 'Koleksi',
+          lookbook: 'Gaya',
+          sizeGuide: 'Panduan Saiz',
+          about: 'Tentang Kami',
+          bag: 'Beg Beli-Belah'
+        },
+        searchPlaceholder: 'Cari abaya, kebarung, tudung bawal, khimar, atau set sedondon...',
+        resetBtn: 'Set Semula',
+        hero: {
+          eyebrow: 'Edisi Raya & Harian • Kuala Lumpur',
+          title: 'Keanggunan Abadi dalam <span class="italic font-semibold text-noora-sage">Kesederhanaan</span>',
+          subtitle: 'Direka khas untuk wanita muslimah moden dengan potongan labuh yang santun, fabrik premium yang sejuk di iklim tropika, serta sentuhan jahitan butik eksklusif.',
+          ctaPrimary: 'Lihat Koleksi',
+          ctaSecondary: 'Koleksi Raya & Sedondon',
+          cardTag: 'Pilihan Utama Musim Ini',
+          cardBtn: 'Lihat Saiz',
+          stats: [
+            { value: '100%', label: 'Fabrik Sejuk & Selesa' },
+            { value: 'S – XL', label: 'Potongan Labuh Sopan' },
+            { value: '4.9 ★', label: '18,000+ Pelanggan MY' }
+          ]
+        },
+        pillars: [
+          {
+            title: 'Fabrik Premium & Sejuk',
+            desc: 'Material Armani Silk, Voal Jepun & Linen semula jadi yang ringan, tidak jarang dan selesa dipakai sepanjang hari.'
+          },
+          {
+            title: 'Mesra Menyusu & Wuduk',
+            desc: 'Zip sorok di bahagian dada serta bukaan lengan berbutang atau bergetah lembut untuk kemudahan berwuduk.'
+          },
+          {
+            title: 'Potongan Labuh & Sopan',
+            desc: 'Rekaan patuh syariah yang jatuh terletak elok tanpa melekap pada tubuh, lengkap dengan lapisan dalam penuh.'
+          },
+          {
+            title: 'Tukaran Saiz Mudah',
+            desc: 'Jaminan penukaran saiz dalam tempoh 7 hari selepas penerimaan bagi pembelian di seluruh Malaysia & Singapura.'
+          }
+        ],
+        catalog: {
+          eyebrow: 'Kurasi Eksklusif',
+          title: 'Koleksi Busana & Hijab',
+          subtitle: 'Pilih warna dan saiz kegemaran anda, atau klik Paparan Pantas untuk menyemak jadual ukuran dalam cm & inci.',
+          showing: (n) => `Menunjukkan ${n} produk`,
+          emptyTitle: 'Tiada produk ditemui',
+          emptyDesc: 'Sila cuba kata kunci lain atau paparkan semua koleksi busana Noora.',
+          showAllBtn: 'Paparkan Semua Koleksi',
+          sortOptions: [
+            { value: 'featured', label: 'Susun: Pilihan Utama' },
+            { value: 'price-asc', label: 'Harga: Rendah ke Tinggi' },
+            { value: 'price-desc', label: 'Harga: Tinggi ke Rendah' }
+          ],
+          colorLabel: 'Warna:',
+          sizeLabel: 'Saiz:',
+          quickViewBtn: 'Paparan Pantas & Saiz',
+          addToBagBtn: '+ Tambah ke Beg'
+        },
+        categories: {
+          'All': 'Semua',
+          'Abaya & Jubah': 'Abaya & Jubah',
+          'Kurung & Dress': 'Kurung & Dress',
+          'Tudung & Khimar': 'Tudung & Khimar',
+          'Set & Family': 'Set & Sedondon'
+        },
+        lookbook: {
+          eyebrow: 'Inspirasi Gaya',
+          title: 'Gaya Santun Sepanjang Hari',
+          desc: 'Padankan helaian abaya, kebarung moden, dan selendang voal kami untuk ke pejabat, majlis ilmu, mahupun kunjungan Aidilfitri.',
+          items: [
+            {
+              tag: 'Gaya Majlis & Raya',
+              title: 'Kebarung Moden Klasik',
+              caption: 'Sulaman halus bernuansa emas lembut untuk seri pagi Syawal yang penuh sopan.',
+              productId: 'khadijah-kebarung'
+            },
+            {
+              tag: 'Gaya Harian & Pejabat',
+              title: 'Linen & Voal Minimalis',
+              caption: 'Potongan longgar bernafas untuk keselesaan maksimum dari pagi hingga ke petang.',
+              productId: 'hana-linen-set'
+            },
+            {
+              tag: 'Momen Keluarga',
+              title: 'Set Sedondon Ibu & Anak',
+              caption: 'Keserasian warna lembut yang manis digayakan bersama si manja di hari istimewa.',
+              productId: 'nour-sedondon-set'
+            }
+          ],
+          cta: 'Lihat Helaian'
+        },
+        reviews: {
+          eyebrow: 'Ulasan Pelanggan',
+          title: 'Dipercayai Wanita Muslimah',
+          verified: 'Pembeli Sah',
+          items: [
+            {
+              initials: 'NF',
+              name: 'Nurul Fatihah',
+              meta: 'Bangi, Selangor • Saiz M',
+              quote: '“MasyaAllah, kain Safiya Armani Silk Abaya sangat lembut, jatuh elok dan langsung tidak panas walaupun dipakai beraya seharian di kampung.”'
+            },
+            {
+              initials: 'SA',
+              name: 'Siti Aishah',
+              meta: 'Kuala Lumpur • Tudung Bawal Voal',
+              quote: '“Maryam Ultrafine Voile memang mudah bentuk di muka dan awning on-point! Penghantaran ke KL pun sangat pantas dengan kotak eksklusif.”'
+            },
+            {
+              initials: 'ZH',
+              name: 'Zarina Hakim',
+              meta: 'Johor Bahru • Set Sedondon',
+              quote: '“Set sedondon ibu dan anak sangat selesa untuk anak saya yang berkulit sensitif. Jahitan kemas bertaraf butik mewah!”'
+            }
+          ]
+        },
+        footer: {
+          aboutText: 'Butik busana muslimah moden berpangkalan di Kuala Lumpur & Selangor yang meraikan keanggunan sopan, fabrik berkualiti tinggi, dan ketelitian jahitan.',
+          address: '📍 Butik Utama: Bangsar Village & Seksyen 9, Bandar Baru Bangi, Selangor',
+          hours: '🕒 Waktu Operasi: Isnin – Ahad (10.00 pagi – 9.00 malam MYT)',
+          serviceTitle: 'Penghantaran & Polisi',
+          services: [
+            '• Penghantaran Percuma seluruh Malaysia (min. RM 250)',
+            '• Penghantaran Hari Sama (Lembah Klang)',
+            '• Pos Laju, J&T Express, DHL & Kurier Singapura',
+            '• Jaminan Tukaran Saiz dalam 7 Hari',
+            '• Kotak Hadiah Eksklusif Noora Percuma'
+          ],
+          sizeGuideLink: '→ Buka Jadual Panduan Saiz',
+          careTitle: 'Penjagaan Fabrik',
+          careList: [
+            '<strong>Armani Silk & Ceruty:</strong> Basuhan tangan lembut dengan air sejuk; elakkan peluntur.',
+            '<strong>Voal & Linen:</strong> Sidai di tempat teduh bagi mengekalkan seri warna asal.',
+            '<strong>Seterika:</strong> Gunakan seterika wap (steamer) pada suhu rendah.'
+          ],
+          newsletterTitle: 'Sertai Komuniti Noora',
+          newsletterDesc: 'Daftar e-mel anda untuk akses awal koleksi Raya dan baucar eksklusif pelanggan setia.',
+          newsletterPlaceholder: 'Masukkan alamat e-mel anda...',
+          newsletterBtn: 'Langgan Sekarang',
+          copyright: '© 2026 Noora Modest Wear Malaysia. Hak Cipta Terpelihara.',
+          tagline: 'Keanggunan dalam Kesederhanaan • Kuala Lumpur & Selangor'
+        },
+        modal: {
+          fabricLabel: 'Komposisi Fabrik:',
+          careLabel: 'Penjagaan & Ciri:',
+          selectColor: 'Pilih Warna:',
+          selectSize: 'Pilih Saiz:',
+          sizeChartTitle: 'Jadual Ukuran Produk (cm & inci):',
+          colSize: 'Saiz',
+          colBust: 'Dada (Bust)',
+          colLength: 'Labuh (Length)',
+          colSleeve: 'Lengan (Sleeve)',
+          addToBag: 'Tambah ke Beg Beli-Belah',
+          sizeGuideHeading: 'Panduan Saiz Rasmi Noora',
+          sizeGuideSub: 'Ukuran standard dalam sentimeter (cm) dan inci (in). Toleransi jahitan ±0.5 inci.',
+          sizeGuideNote: '<strong>Nota Tudung & Khimar:</strong> Tudung Bawal / Shawl berukuran 180 × 75 cm (71 × 29.5 in), manakala French Khimar Syar’i mempunyai labuh hadapan 95 cm (37.5 in) & labuh belakang 125 cm (49 in).'
+        },
+        wishlist: {
+          title: 'Senarai Hajat Anda',
+          empty: 'Senarai hajat anda masih kosong. Klik ikon hati pada produk kegemaran untuk menyimpannya di sini.',
+          moveToBag: 'Pilih & Beli'
+        },
+        cart: {
+          title: 'Beg Beli-Belah',
+          freeShipUnlocked: '🎉 Tahniah! Pesanan anda layak mendapat <strong>PENGHANTARAN PERCUMA</strong> seluruh Malaysia.',
+          freeShipProgress: (rem) => `Tambah <strong class="text-noora-sage">${rem}</strong> lagi untuk menikmati <strong>Penghantaran Percuma!</strong>`,
+          freeShipDefault: 'Belanja melebihi <strong class="text-noora-sage">RM 250</strong> untuk <strong>Penghantaran Percuma!</strong>',
+          emptyTitle: 'Beg Beli-Belah Kosong',
+          emptyDesc: 'Terokai koleksi abaya, kebarung moden, dan tudung premium kami untuk melengkapkan gaya anda.',
+          promoPlaceholder: 'Kod baucar (NOORARAYA / NOORABERKAH)',
+          applyBtn: 'Guna',
+          promoSuccess: (code) => `✓ Kod baucar "${code}" berjaya digunakan (Diskaun 10%)!`,
+          promoEmpty: 'Sila masukkan kod baucar terlebih dahulu.',
+          promoInvalid: 'Kod baucar tidak sah. Cuba guna kod NOORARAYA atau NOORABERKAH.',
+          subtotal: 'Jumlah Kecil',
+          discount: 'Diskaun Baucar (10%)',
+          total: 'Jumlah Keseluruhan',
+          waBtn: 'Tempah melalui WhatsApp',
+          directBtn: 'Teruskan Pembayaran',
+          colorShort: 'Warna',
+          sizeShort: 'Saiz'
+        },
+        checkout: {
+          waModalTitle: 'Ringkasan Tempahan WhatsApp',
+          waModalDesc: 'Mesej tempahan anda telah disediakan secara automatik. Klik butang di bawah untuk menghantar kepada Perunding Butik Noora:',
+          waOpenBtn: 'Hantar ke WhatsApp Sekarang',
+          copyBtn: 'Salin Teks Tempahan',
+          directTitle: 'Pengesahan Pembayaran Terus',
+          directSub: 'Lengkapkan butiran penghantaran anda untuk pembayaran dalam talian (FPX / Kad Kredit / E-Wallet).',
+          nameLabel: 'Nama Penuh Penerima',
+          phoneLabel: 'No. Telefon (WhatsApp)',
+          addressLabel: 'Alamat Penghantaran Lengkap (Negeri / Poskod)',
+          paymentLabel: 'Kaedah Pembayaran',
+          confirmOrderBtn: 'Sahkan Pesanan Sekarang',
+          orderConfirmedTitle: 'Terima Kasih! Pesanan Diterima ✨',
+          orderConfirmedDesc: 'Rujukan pesanan anda telah direkodkan. Pasukan butik kami di Kuala Lumpur akan menghantar nombor penjejakan kurier ke WhatsApp & e-mel anda.'
+        },
+        toasts: {
+          addedBag: (name, color, size) => `${name} (${color}, ${size}) ditambah ke beg beli-belah`,
+          addedWish: (name) => `${name} disimpan ke senarai hajat`,
+          removedWish: (name) => `${name} dikeluarkan daripada senarai hajat`,
+          copiedCode: (code) => `Kod baucar "${code}" disalin! Tampal di dalam beg beli-belah.`,
+          copiedText: 'Teks tempahan berjaya disalin!',
+          newsletterOk: (email) => `Terima kasih! Akses eksklusif dihantar ke ${email}`,
+          langSwitched: 'Bahasa ditukar ke Bahasa Melayu 🇲🇾'
+        }
+      },
+
+      en: {
+        announcementText: '✨ Free Shipping across Malaysia on orders above RM 250 |',
+        announcementCode: 'Code: NOORARAYA',
+        nav: {
+          home: 'Home',
+          collection: 'Collection',
+          lookbook: 'Lookbook',
+          sizeGuide: 'Size Guide',
+          about: 'About',
+          bag: 'Shopping Bag'
+        },
+        searchPlaceholder: 'Search abaya, kebarung, voile shawl, khimar, or family sets...',
+        resetBtn: 'Reset',
+        hero: {
+          eyebrow: 'Raya & Daily Edit • Kuala Lumpur',
+          title: 'Timeless Grace in <span class="italic font-semibold text-noora-sage">Modest Simplicity</span>',
+          subtitle: 'Thoughtfully crafted for the modern Muslimah with flowing, dignified silhouettes, breathable tropical-friendly fabrics, and refined boutique tailoring.',
+          ctaPrimary: 'Shop Collection',
+          ctaSecondary: 'Raya Series',
+          cardTag: 'Season Signature Piece',
+          cardBtn: 'View Sizes',
+          stats: [
+            { value: '100%', label: 'Breathable Luxury Fabrics' },
+            { value: 'S – XL', label: 'Tailored Modest Cut' },
+            { value: '4.9 ★', label: '18,000+ Happy Clients' }
+          ]
+        },
+        pillars: [
+          {
+            title: 'Premium Breathable Fabrics',
+            desc: 'Crafted from imported Armani Silk, Japanese Voile & natural Ramie Linen for airy, opaque all-day comfort.'
+          },
+          {
+            title: 'Nursing & Wudhu Friendly',
+            desc: 'Discreet front zippers for nursing mothers and buttoned or elasticated cuffs for effortless wudhu.'
+          },
+          {
+            title: 'Tailored Modest Cut',
+            desc: 'Graceful, non-clinging silhouettes with full breathable lining designed for confident modesty.'
+          },
+          {
+            title: 'Easy Size Exchange',
+            desc: 'Hassle-free 7-day size exchange guarantee across Malaysia & Singapore for peace of mind.'
+          }
+        ],
+        catalog: {
+          eyebrow: 'Curated Edit',
+          title: 'Modest Wear & Hijab Collection',
+          subtitle: 'Select your preferred colour and size directly, or open Quick View to inspect fabric details and cm/inch size charts.',
+          showing: (n) => `Showing ${n} pieces`,
+          emptyTitle: 'No pieces found',
+          emptyDesc: 'Try a different keyword or browse our complete modest wear collection.',
+          showAllBtn: 'View All Pieces',
+          sortOptions: [
+            { value: 'featured', label: 'Sort: Featured' },
+            { value: 'price-asc', label: 'Price: Low to High' },
+            { value: 'price-desc', label: 'Price: High to Low' }
+          ],
+          colorLabel: 'Colour:',
+          sizeLabel: 'Size:',
+          quickViewBtn: 'Quick View & Size Chart',
+          addToBagBtn: '+ Add to Bag'
+        },
+        categories: {
+          'All': 'All',
+          'Abaya & Jubah': 'Abaya & Jubah',
+          'Kurung & Dress': 'Kurung & Dress',
+          'Tudung & Khimar': 'Tudung & Khimar',
+          'Set & Family': 'Set & Family'
+        },
+        lookbook: {
+          eyebrow: 'Styling Inspiration',
+          title: 'Effortless Modesty, Day to Evening',
+          desc: 'Pair our flowing abayas, modern kebarung silhouettes, and ultrafine voile shawls for workdays, gatherings, and Eid celebrations.',
+          items: [
+            {
+              tag: 'Festive & Raya Edit',
+              title: 'Modern Heritage Kebarung',
+              caption: 'Delicate gold-thread embroidery crafted for serene Aidilfitri mornings.',
+              productId: 'khadijah-kebarung'
+            },
+            {
+              tag: 'Everyday & Workwear',
+              title: 'Minimalist Linen & Voile',
+              caption: 'Relaxed breathable tailoring designed for graceful movement from morning till dusk.',
+              productId: 'hana-linen-set'
+            },
+            {
+              tag: 'Family Moments',
+              title: 'Mother & Daughter Sedondon',
+              caption: 'Harmonious pastel tones tailored for cherished family portraits.',
+              productId: 'nour-sedondon-set'
+            }
+          ],
+          cta: 'Explore Piece'
+        },
+        reviews: {
+          eyebrow: 'Client Stories',
+          title: 'Loved by Modest Women',
+          verified: 'Verified Buyer',
+          items: [
+            {
+              initials: 'NF',
+              name: 'Nurul Fatihah',
+              meta: 'Bangi, Selangor • Size M',
+              quote: '“The Safiya Armani Silk Abaya drapes so beautifully and feels wonderfully cool even during full-day Raya visits.”'
+            },
+            {
+              initials: 'SA',
+              name: 'Siti Aishah',
+              meta: 'Kuala Lumpur • Ultrafine Voile Shawl',
+              quote: '“Maryam Ultrafine Voile shapes effortlessly around the face! Same-day delivery in KL arrived in a gorgeous gift box.”'
+            },
+            {
+              initials: 'ZH',
+              name: 'Zarina Hakim',
+              meta: 'Johor Bahru • Sedondon Set',
+              quote: '“The Mother & Daughter Sedondon set is ultra-soft on my daughter’s sensitive skin. True boutique craftsmanship!”'
+            }
+          ]
+        },
+        footer: {
+          aboutText: 'A Kuala Lumpur & Selangor modest fashion house celebrating timeless grace, breathable luxury fabrics, and refined boutique tailoring.',
+          address: '📍 Flagship Boutiques: Bangsar Village & Seksyen 9, Bandar Baru Bangi, Selangor',
+          hours: '🕒 Boutique Hours: Monday – Sunday (10:00 AM – 9:00 PM MYT)',
+          serviceTitle: 'Shipping & Care Services',
+          services: [
+            '• Free Shipping across Malaysia (orders above RM 250)',
+            '• Same-Day Express Delivery (Klang Valley)',
+            '• Pos Laju, J&T Express, DHL & Singapore Courier',
+            '• 7-Day Easy Size Exchange Guarantee',
+            '• Complimentary Noora Signature Gift Box'
+          ],
+          sizeGuideLink: '→ Open Official Size Chart',
+          careTitle: 'Fabric Care Guide',
+          careList: [
+            '<strong>Armani Silk & Ceruty:</strong> Gentle cold handwash only; do not bleach.',
+            '<strong>Voile & Linen:</strong> Line dry in shade to preserve rich natural tones.',
+            '<strong>Ironing:</strong> Use a garment steamer or low heat setting.'
+          ],
+          newsletterTitle: 'Join the Noora Circle',
+          newsletterDesc: 'Subscribe for early access to Raya drops and private member vouchers.',
+          newsletterPlaceholder: 'Enter your email address...',
+          newsletterBtn: 'Subscribe Now',
+          copyright: '© 2026 Noora Modest Wear Malaysia. All rights reserved.',
+          tagline: 'Timeless Grace in Modest Simplicity • Kuala Lumpur & Selangor'
+        },
+        modal: {
+          fabricLabel: 'Fabric Composition:',
+          careLabel: 'Care & Features:',
+          selectColor: 'Select Colour:',
+          selectSize: 'Select Size:',
+          sizeChartTitle: 'Product Size Chart (cm & inches):',
+          colSize: 'Size',
+          colBust: 'Bust',
+          colLength: 'Length',
+          colSleeve: 'Sleeve',
+          addToBag: 'Add to Shopping Bag',
+          sizeGuideHeading: 'Noora Official Size Guide',
+          sizeGuideSub: 'Standard measurements in centimetres (cm) and inches (in). Tailoring tolerance ±0.5 in.',
+          sizeGuideNote: '<strong>Hijab & Khimar Note:</strong> Shawls / Bawal measure 180 × 75 cm (71 × 29.5 in), while French Khimar Syar’i measures 95 cm (37.5 in) front length & 125 cm (49 in) back length.'
+        },
+        wishlist: {
+          title: 'Your Saved Wishlist',
+          empty: 'Your wishlist is currently empty. Tap the heart icon on any piece to save it here.',
+          moveToBag: 'Select & Shop'
+        },
+        cart: {
+          title: 'Shopping Bag',
+          freeShipUnlocked: '🎉 Congratulations! Your order qualifies for <strong>FREE SHIPPING</strong> across Malaysia.',
+          freeShipProgress: (rem) => `Add <strong class="text-noora-sage">${rem}</strong> more to unlock <strong>Free Shipping!</strong>`,
+          freeShipDefault: 'Spend above <strong class="text-noora-sage">RM 250</strong> for <strong>Free Shipping!</strong>',
+          emptyTitle: 'Your Bag is Empty',
+          emptyDesc: 'Explore our curated abayas, modern kebarung sets, and ultrafine shawls to begin your order.',
+          promoPlaceholder: 'Promo code (NOORARAYA / NOORABERKAH)',
+          applyBtn: 'Apply',
+          promoSuccess: (code) => `✓ Promo code "${code}" applied (10% off)!`,
+          promoEmpty: 'Please enter a promo code first.',
+          promoInvalid: 'Invalid promo code. Try NOORARAYA or NOORABERKAH.',
+          subtotal: 'Subtotal',
+          discount: 'Voucher Discount (10%)',
+          total: 'Total Amount',
+          waBtn: 'Order via WhatsApp',
+          directBtn: 'Direct Checkout',
+          colorShort: 'Colour',
+          sizeShort: 'Size'
+        },
+        checkout: {
+          waModalTitle: 'WhatsApp Order Summary',
+          waModalDesc: 'Your order summary is ready. Click below to send directly to Noora Boutique Concierge on WhatsApp:',
+          waOpenBtn: 'Send via WhatsApp Now',
+          copyBtn: 'Copy Order Text',
+          directTitle: 'Direct Express Checkout',
+          directSub: 'Complete your Malaysian delivery details for instant online payment (FPX / Card / GrabPay / TnG).',
+          nameLabel: 'Recipient Full Name',
+          phoneLabel: 'Phone Number (WhatsApp)',
+          addressLabel: 'Full Delivery Address (State / Postcode)',
+          paymentLabel: 'Payment Method',
+          confirmOrderBtn: 'Confirm & Place Order',
+          orderConfirmedTitle: 'Thank You! Order Confirmed ✨',
+          orderConfirmedDesc: 'Your order has been received. Our Kuala Lumpur boutique team will send your courier tracking details via WhatsApp & email shortly.'
+        },
+        toasts: {
+          addedBag: (name, color, size) => `${name} (${color}, ${size}) added to shopping bag`,
+          addedWish: (name) => `${name} saved to wishlist`,
+          removedWish: (name) => `${name} removed from wishlist`,
+          copiedCode: (code) => `Promo code "${code}" copied! Paste it in your shopping bag.`,
+          copiedText: 'Order summary copied to clipboard!',
+          newsletterOk: (email) => `Thank you! Private preview sent to ${email}`,
+          langSwitched: 'Language switched to English 🇬🇧'
+        }
+      }
+    };
+
+    // 8 Bilingual Modest Wear Products priced in RM (Ringgit Malaysia)
+    const products = [
+      {
+        id: 'safiya-silk-abaya',
+        categoryKey: 'Abaya & Jubah',
+        price: 249,
+        originalPrice: 289,
+        badgeType: 'gold',
+        badge: { bm: 'Terlaris', en: 'Best Seller' },
+        name: {
+          bm: 'Safiya Armani Silk Abaya',
+          en: 'Safiya Armani Silk Abaya'
+        },
+        description: {
+          bm: 'Abaya potongan mengalir mewah daripada fabrik Armani Silk import yang lembut, beralun dan tidak jarang.',
+          en: 'Luxurious flowing abaya crafted from imported Armani Silk that drapes effortlessly with complete opacity.'
+        },
+        fabric: {
+          bm: '100% Armani Silk Premium (Sejuk, Licin & Tidak Jarang)',
+          en: '100% Premium Armani Silk (Cool, Smooth & Opaque)'
+        },
+        care: {
+          bm: 'Mesra Menyusu (Zip Sorok) & Wuduk • Basuhan tangan lembut',
+          en: 'Nursing (Hidden Zip) & Wudhu Friendly • Gentle handwash'
+        },
+        image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=700&q=80',
+        colors: [
+          { hex: '#5F7161', name: { bm: 'Hijau Sage', en: 'Sage Mist' } },
+          { hex: '#E8DFD1', name: { bm: 'Gading Krim', en: 'Champagne Ivory' } },
+          { hex: '#232523', name: { bm: 'Hitam Malam', en: 'Midnight Noir' } }
+        ],
+        sizes: ['S', 'M', 'L', 'XL'],
+        sizeChart: [
+          { size: 'S', bust: '96 cm / 38"', length: '137 cm / 54"', sleeve: '56 cm / 22"' },
+          { size: 'M', bust: '102 cm / 40"', length: '140 cm / 55"', sleeve: '57 cm / 22.5"' },
+          { size: 'L', bust: '108 cm / 42.5"', length: '142 cm / 56"', sleeve: '58 cm / 23"' },
+          { size: 'XL', bust: '114 cm / 45"', length: '145 cm / 57"', sleeve: '59 cm / 23.5"' }
+        ]
+      },
+      {
+        id: 'zahra-ceruty-dress',
+        categoryKey: 'Kurung & Dress',
+        price: 199,
+        originalPrice: null,
+        badgeType: 'sage',
+        badge: { bm: 'Koleksi Baharu', en: 'New Arrival' },
+        name: {
+          bm: 'Zahra Gaun Ceruty Babydoll',
+          en: 'Zahra Ceruty Babydoll Dress'
+        },
+        description: {
+          bm: 'Gaun labuh beralun dua lapisan dengan lining kapas rayon penuh yang sangat selesa untuk majlis istimewa.',
+          en: 'Graceful double-layered maxi dress with full breathable cotton-rayon lining for effortless all-day elegance.'
+        },
+        fabric: {
+          bm: 'Ceruty Babydoll + Lapisan Penuh Kapas Rayon',
+          en: 'Ceruty Babydoll + Full Cotton-Rayon Lining'
+        },
+        care: {
+          bm: 'Mesra Menyusu & Wuduk • Poket sisi tersembunyi • Seterika wap',
+          en: 'Nursing & Wudhu Friendly • Hidden side pockets • Steam iron'
+        },
+        image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=700&q=80',
+        colors: [
+          { hex: '#C89D9C', name: { bm: 'Mawar Lembut', en: 'Dusty Rose' } },
+          { hex: '#B8ADA2', name: { bm: 'Taupe Hangat', en: 'Warm Taupe' } },
+          { hex: '#EFE8DC', name: { bm: 'Sutera Krim', en: 'Cream Silk' } }
+        ],
+        sizes: ['S', 'M', 'L', 'XL'],
+        sizeChart: [
+          { size: 'S', bust: '94 cm / 37"', length: '136 cm / 53.5"', sleeve: '56 cm / 22"' },
+          { size: 'M', bust: '100 cm / 39.5"', length: '138 cm / 54.5"', sleeve: '57 cm / 22.5"' },
+          { size: 'L', bust: '106 cm / 41.5"', length: '141 cm / 55.5"', sleeve: '58 cm / 23"' },
+          { size: 'XL', bust: '112 cm / 44"', length: '143 cm / 56.5"', sleeve: '59 cm / 23.5"' }
+        ]
+      },
+      {
+        id: 'maryam-voile-shawl',
+        categoryKey: 'Tudung & Khimar',
+        price: 59,
+        originalPrice: 75,
+        badgeType: 'gold',
+        badge: { bm: 'Terlaris', en: 'Best Seller' },
+        name: {
+          bm: 'Maryam Tudung Bawal & Shawl Voal',
+          en: 'Maryam Ultrafine Voile Shawl'
+        },
+        description: {
+          bm: 'Tudung voal ultrafine Jepun dengan kemasan potongan laser halus dan awning mudah bentuk tanpa perlu kanji.',
+          en: 'Japanese ultrafine voile shawl with delicate laser-cut edges that frames the face effortlessly all day.'
+        },
+        fabric: {
+          bm: 'Voal Ultrafine Jepun (Ringan & Awning On-Point)',
+          en: 'Japanese Ultrafine Voile (Airy & Easy-Shape Drape)'
+        },
+        care: {
+          bm: 'Saiz 180 × 75 cm • Plat logo emas Noora • Mudah digosok',
+          en: '180 × 75 cm (71 × 29.5") • Gold Noora charm • Low-heat iron'
+        },
+        image: 'https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?auto=format&fit=crop&w=700&q=80',
+        colors: [
+          { hex: '#687864', name: { bm: 'Zaitun Sage', en: 'Olive Sage' } },
+          { hex: '#D6C7B2', name: { bm: 'Pasir Lembut', en: 'Sandstone' } },
+          { hex: '#8C7365', name: { bm: 'Moka Latte', en: 'Mocha Latte' } },
+          { hex: '#F7F4EE', name: { bm: 'Putih Gading', en: 'Ivory White' } }
+        ],
+        sizes: ['All Size'],
+        sizeChart: [
+          { size: 'All Size', bust: '75 cm / 29.5" (Lebar/Width)', length: '180 cm / 71" (Panjang/Length)', sleeve: '-' }
+        ]
+      },
+      {
+        id: 'aisyah-french-khimar',
+        categoryKey: 'Tudung & Khimar',
+        price: 179,
+        originalPrice: null,
+        badgeType: 'sage',
+        badge: { bm: 'Mesra Menyusu & Wuduk', en: 'Nursing & Wudhu Friendly' },
+        name: {
+          bm: 'Set Aisyah French Khimar Syar’i',
+          en: 'Aisyah French Khimar Syar’i Set'
+        },
+        description: {
+          bm: 'Set khimar labuh patuh syariah lengkap bersama niqab bertali bersepadu daripada fabrik Mazen Anti-UV yang sejuk.',
+          en: 'Full-coverage syar’i khimar set with integrated tie-back niqab crafted from cooling Mazen Anti-UV silk.'
+        },
+        fabric: {
+          bm: 'Mazen Anti-UV Silk (Sejuk, Tidak Jarang & Anti-Kedut)',
+          en: 'Mazen Anti-UV Silk (Cooling, Opaque & Wrinkle-Resistant)'
+        },
+        care: {
+          bm: 'Termasuk niqab bertali • Rekaan non-pad antem • Sidai teduh',
+          en: 'Includes tie-back niqab • Face-slimming non-pad • Shade dry'
+        },
+        image: 'https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&w=700&q=80',
+        colors: [
+          { hex: '#4A3B32', name: { bm: 'Kopi Espresso', en: 'Espresso' } },
+          { hex: '#5F7161', name: { bm: 'Daun Sage', en: 'Sage Leaf' } },
+          { hex: '#1B1B1B', name: { bm: 'Hitam Pekat', en: 'Jet Black' } }
+        ],
+        sizes: ['M', 'L'],
+        sizeChart: [
+          { size: 'M', bust: '90 cm / 35.5" (Depan/Front)', length: '120 cm / 47" (Belakang/Back)', sleeve: '26 cm / 10.2" (Muka/Face)' },
+          { size: 'L', bust: '98 cm / 38.5" (Depan/Front)', length: '128 cm / 50.5" (Belakang/Back)', sleeve: '27 cm / 10.6" (Muka/Face)' }
+        ]
+      },
+      {
+        id: 'hana-linen-set',
+        categoryKey: 'Set & Family',
+        price: 189,
+        originalPrice: 219,
+        badgeType: 'warn',
+        badge: { bm: 'Stok Terhad', en: 'Limited Edition' },
+        name: {
+          bm: 'Hana Set Tunik & Seluar Ramie Linen',
+          en: 'Hana Ramie Linen Tunic Set'
+        },
+        description: {
+          bm: 'Set dua helaian tunik labuh bersama seluar palazzo pinggang bergetah penuh untuk gaya kasual sopan harian.',
+          en: 'Two-piece modest long tunic and wide-leg palazzo trouser set tailored from breathable natural ramie linen.'
+        },
+        fabric: {
+          bm: '100% Kapas Ramie Linen Semula Jadi',
+          en: '100% Natural Ramie Cotton Linen'
+        },
+        care: {
+          bm: 'Butang depan mesra menyusu • Poket sisi • Basuhan lembut',
+          en: 'Nursing-friendly front buttons • Side pockets • Gentle wash'
+        },
+        image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80',
+        colors: [
+          { hex: '#DDD3C5', name: { bm: 'Oatmeal', en: 'Natural Oatmeal' } },
+          { hex: '#B56E58', name: { bm: 'Terakota', en: 'Terracotta Clay' } },
+          { hex: '#4E6151', name: { bm: 'Hijau Rimba', en: 'Forest Sage' } }
+        ],
+        sizes: ['S', 'M', 'L', 'XL'],
+        sizeChart: [
+          { size: 'S', bust: '96 cm / 38"', length: '95 cm (Tunik) / 97 cm (Seluar)', sleeve: '55 cm / 21.5"' },
+          { size: 'M', bust: '102 cm / 40"', length: '97 cm (Tunik) / 99 cm (Seluar)', sleeve: '56 cm / 22"' },
+          { size: 'L', bust: '108 cm / 42.5"', length: '99 cm (Tunik) / 101 cm (Seluar)', sleeve: '57 cm / 22.5"' },
+          { size: 'XL', bust: '114 cm / 45"', length: '101 cm (Tunik) / 102 cm (Seluar)', sleeve: '58 cm / 23"' }
+        ]
+      },
+      {
+        id: 'medina-pleated-dress',
+        categoryKey: 'Kurung & Dress',
+        price: 219,
+        originalPrice: null,
+        badgeType: 'gold',
+        badge: { bm: 'Terlaris', en: 'Best Seller' },
+        name: {
+          bm: 'Medina Gaun Lipatan Plisket',
+          en: 'Medina Pleated Modest Dress'
+        },
+        description: {
+          bm: 'Gaun plisket mikro tanpa perlu digosok (ironless) dengan tali pinggang boleh tanggal—ideal untuk percutian & pejabat.',
+          en: 'Ironless micro-pleated maxi dress with detachable waist sash—designed for effortless travel and office wear.'
+        },
+        fabric: {
+          bm: 'Micro-Pleats Crepe Premium (Anti-Kedut / Ironless)',
+          en: 'Premium Micro-Pleats Crepe (Wrinkle-Free / Ironless)'
+        },
+        care: {
+          bm: 'Mesra Wuduk & Travel • Tidak perlu seterika • Gantung kering',
+          en: 'Wudhu & Travel Friendly • No ironing needed • Hang to dry'
+        },
+        image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=700&q=80',
+        colors: [
+          { hex: '#C4BCB2', name: { bm: 'Kelabu Taupe', en: 'Taupe Mist' } },
+          { hex: '#475D4B', name: { bm: 'Zamrud Sage', en: 'Emerald Sage' } },
+          { hex: '#A67B5B', name: { bm: 'Karamel', en: 'Warm Caramel' } }
+        ],
+        sizes: ['S', 'M', 'L', 'XL'],
+        sizeChart: [
+          { size: 'S', bust: '94 cm / 37"', length: '135 cm / 53"', sleeve: '56 cm / 22"' },
+          { size: 'M', bust: '100 cm / 39.5"', length: '138 cm / 54.5"', sleeve: '57 cm / 22.5"' },
+          { size: 'L', bust: '106 cm / 41.5"', length: '140 cm / 55"', sleeve: '58 cm / 23"' },
+          { size: 'XL', bust: '112 cm / 44"', length: '142 cm / 56"', sleeve: '59 cm / 23.5"' }
+        ]
+      },
+      {
+        id: 'khadijah-kebarung',
+        categoryKey: 'Kurung & Dress',
+        price: 269,
+        originalPrice: 310,
+        badgeType: 'gold',
+        badge: { bm: 'Koleksi Baharu', en: 'New Arrival' },
+        name: {
+          bm: 'Khadijah Kebarung Moden Raya',
+          en: 'Khadijah Raya Kebarung Moden'
+        },
+        description: {
+          bm: 'Kebarung moden berpotongan labuh dengan sulaman benang emas halus dan kain lipat batik selesa melangkah.',
+          en: 'Heritage-inspired long kebarung featuring delicate gold embroidery and a comfortable folded batik-style skirt.'
+        },
+        fabric: {
+          bm: 'Sutera Jacquard Tenun + Sulaman Klasik Noora',
+          en: 'Woven Jacquard Silk + Noora Heritage Embroidery'
+        },
+        care: {
+          bm: 'Zip sorok depan (Mesra Menyusu) • Lengan zip wuduk • Cucian kering/tangan',
+          en: 'Hidden front zip (Nursing friendly) • Wudhu sleeve zip • Handwash'
+        },
+        image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=700&q=80',
+        colors: [
+          { hex: '#5F7161', name: { bm: 'Sage Diraja', en: 'Royal Sage Gold' } },
+          { hex: '#D5C7B4', name: { bm: 'Pasir Emas', en: 'Champagne Sand' } }
+        ],
+        sizes: ['S', 'M', 'L', 'XL'],
+        sizeChart: [
+          { size: 'S', bust: '94 cm / 37"', length: '88 cm (Baju) / 100 cm (Kain)', sleeve: '56 cm / 22"' },
+          { size: 'M', bust: '100 cm / 39.5"', length: '90 cm (Baju) / 102 cm (Kain)', sleeve: '57 cm / 22.5"' },
+          { size: 'L', bust: '106 cm / 41.5"', length: '92 cm (Baju) / 103 cm (Kain)', sleeve: '58 cm / 23"' },
+          { size: 'XL', bust: '112 cm / 44"', length: '94 cm (Baju) / 104 cm (Kain)', sleeve: '59 cm / 23.5"' }
+        ]
+      },
+      {
+        id: 'nour-sedondon-set',
+        categoryKey: 'Set & Family',
+        price: 329,
+        originalPrice: 379,
+        badgeType: 'warn',
+        badge: { bm: 'Set & Sedondon', en: 'Mother & Daughter' },
+        name: {
+          bm: 'Set Sedondon Ibu & Anak Nour',
+          en: 'Nour Mother & Daughter Sedondon Set'
+        },
+        description: {
+          bm: 'Pakej istimewa 1 Kurung/Abaya Ibu bersama 1 Gaun Anak (umur 4–8 tahun) daripada kapas Madinah organik lembut.',
+          en: 'Complete matching set featuring 1 Mother Dress and 1 Daughter Dress (ages 4–8 yrs) in ultra-soft Madinah organic cotton.'
+        },
+        fabric: {
+          bm: 'Kapas Madinah Organik (Mesra Kulit Sensitif Kanak-Kanak)',
+          en: 'Organic Madinah Cotton (Gentle on Kids’ Sensitive Skin)'
+        },
+        care: {
+          bm: 'Set 2-dalam-1 (Ibu + Anak) • Mesra menyusu & wuduk',
+          en: '2-in-1 Bundle (Mother + Daughter) • Nursing & wudhu friendly'
+        },
+        image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=700&q=80',
+        colors: [
+          { hex: '#E6D7CE', name: { bm: 'Gading Mawar', en: 'Blush Ivory' } },
+          { hex: '#7A8C7C', name: { bm: 'Sage Lembut', en: 'Soft Sage' } }
+        ],
+        sizes: ['S', 'M', 'L', 'XL'],
+        sizeChart: [
+          { size: 'S', bust: '94 cm (Ibu) / 68 cm (Anak)', length: '135 cm / 85 cm', sleeve: '56 cm / 22"' },
+          { size: 'M', bust: '100 cm (Ibu) / 72 cm (Anak)', length: '138 cm / 95 cm', sleeve: '57 cm / 22.5"' },
+          { size: 'L', bust: '106 cm (Ibu) / 76 cm (Anak)', length: '140 cm / 105 cm', sleeve: '58 cm / 23"' },
+          { size: 'XL', bust: '112 cm (Ibu) / 80 cm (Anak)', length: '142 cm / 112 cm', sleeve: '59 cm / 23.5"' }
+        ]
+      }
+    ];
+
+    // Application State (Preserved seamlessly across language switches!)
+    let activeCategory = 'All';
+    let searchQuery = '';
+    let selectedCardOptions = {};
+    let wishlist = [];
+    let cart = [];
+    let activeDiscountRate = 0;
+    let activePromoCode = '';
+    let activeQuickViewId = null;
+
+    products.forEach(p => {
+      selectedCardOptions[p.id] = {
+        colorIndex: 0,
+        size: p.sizes[0]
+      };
+    });
+
+    // Format Currency in Ringgit Malaysia (RM)
+    function formatRM(amount) {
+      return 'RM ' + amount.toLocaleString('en-MY', {
+        minimumFractionDigits: amount % 1 === 0 ? 0 : 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    // =========================================================
+    // INSTANT LANGUAGE SWITCHER (BM <-> EN)
+    // =========================================================
+    function setLanguage(lang) {
+      if (lang !== 'bm' && lang !== 'en') return;
+      currentLang = lang;
+      document.documentElement.lang = lang === 'bm' ? 'ms' : 'en';
+
+      // Update Desktop & Mobile Toggle Buttons
+      const bmDesktop = document.getElementById('lang-btn-bm');
+      const enDesktop = document.getElementById('lang-btn-en');
+      const bmMobile = document.getElementById('mobile-lang-bm');
+      const enMobile = document.getElementById('mobile-lang-en');
+
+      if (lang === 'bm') {
+        bmDesktop.className = 'px-2.5 py-1 rounded-full transition-all cursor-pointer bg-noora-sage text-white';
+        enDesktop.className = 'px-2.5 py-1 rounded-full transition-all cursor-pointer text-noora-charcoal hover:text-noora-sage';
+        bmMobile.className = 'px-3 py-1 rounded-full bg-noora-sage text-white';
+        enMobile.className = 'px-3 py-1 rounded-full text-noora-charcoal';
+      } else {
+        enDesktop.className = 'px-2.5 py-1 rounded-full transition-all cursor-pointer bg-noora-sage text-white';
+        bmDesktop.className = 'px-2.5 py-1 rounded-full transition-all cursor-pointer text-noora-charcoal hover:text-noora-sage';
+        enMobile.className = 'px-3 py-1 rounded-full bg-noora-sage text-white';
+        bmMobile.className = 'px-3 py-1 rounded-full text-noora-charcoal';
+      }
+
+      renderAllLocalizedUI();
+      showToast(i18n[currentLang].toasts.langSwitched);
+    }
+
+    function renderAllLocalizedUI() {
+      const t = i18n[currentLang];
+
+      // 1. Top Announcement Bar
+      document.getElementById('announcement-text').textContent = t.announcementText;
+      document.getElementById('announcement-code-label').textContent = t.announcementCode;
+
+      // 2. Navigation Links (Desktop & Mobile)
+      document.getElementById('desktop-nav').innerHTML = `
+        <a href="#utama" class="hover:text-noora-sage transition-colors">${t.nav.home}</a>
+        <a href="#koleksi" onclick="filterByCategory('All')" class="hover:text-noora-sage transition-colors">${t.nav.collection}</a>
+        <a href="#gaya" class="hover:text-noora-sage transition-colors">${t.nav.lookbook}</a>
+        <button onclick="openSizeGuideModal()" class="hover:text-noora-sage transition-colors cursor-pointer">${t.nav.sizeGuide}</button>
+        <a href="#tentang" class="hover:text-noora-sage transition-colors">${t.nav.about}</a>
+      `;
+
+      document.getElementById('mobile-nav-links').innerHTML = `
+        <a href="#utama" onclick="closeMobileMenu()" class="block px-3 py-2 rounded-xl hover:bg-noora-cream font-medium">${t.nav.home}</a>
+        <a href="#koleksi" onclick="filterByCategory('All'); closeMobileMenu();" class="block px-3 py-2 rounded-xl hover:bg-noora-cream font-medium">${t.nav.collection}</a>
+        <a href="#gaya" onclick="closeMobileMenu()" class="block px-3 py-2 rounded-xl hover:bg-noora-cream font-medium">${t.nav.lookbook}</a>
+        <button onclick="openSizeGuideModal(); closeMobileMenu();" class="w-full text-left px-3 py-2 rounded-xl hover:bg-noora-cream font-medium text-noora-sage">${t.nav.sizeGuide}</button>
+        <a href="#tentang" onclick="closeMobileMenu()" class="block px-3 py-2 rounded-xl hover:bg-noora-cream font-medium">${t.nav.about}</a>
+      `;
+
+      document.getElementById('nav-bag-label').textContent = t.nav.bag;
+      document.getElementById('search-input').placeholder = t.searchPlaceholder;
+      document.getElementById('clear-search-btn').textContent = t.resetBtn;
+
+      // 3. Hero Section
+      document.getElementById('hero-eyebrow').textContent = t.hero.eyebrow;
+      document.getElementById('hero-title').innerHTML = t.hero.title;
+      document.getElementById('hero-subtitle').textContent = t.hero.subtitle;
+      document.getElementById('hero-cta-primary').textContent = t.hero.ctaPrimary;
+      document.getElementById('hero-cta-secondary').textContent = t.hero.ctaSecondary;
+      document.getElementById('hero-card-tag').textContent = t.hero.cardTag;
+      document.getElementById('hero-card-btn').textContent = t.hero.cardBtn;
+
+      document.getElementById('hero-stats').innerHTML = t.hero.stats.map(st => `
+        <div>
+          <p class="font-serif text-2xl font-bold text-noora-charcoal">${st.value}</p>
+          <p class="text-xs text-noora-muted">${st.label}</p>
+        </div>
+      `).join('');
+
+      // 4. Trust Pillars (4 Features)
+      const pillarIcons = [
+        '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>',
+        '<path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>',
+        '<path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>',
+        '<path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>'
+      ];
+
+      document.getElementById('trust-pillars-grid').innerHTML = t.pillars.map((pillar, idx) => `
+        <div class="bg-noora-ivory border border-noora-taupe/70 rounded-2xl p-6 flex items-start gap-4 shadow-2xs">
+          <div class="w-11 h-11 rounded-xl bg-noora-sage/10 text-noora-sage flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              ${pillarIcons[idx]}
+            </svg>
+          </div>
+          <div class="space-y-1">
+            <h3 class="font-serif text-lg font-bold text-noora-charcoal leading-snug">${pillar.title}</h3>
+            <p class="text-xs text-noora-muted leading-relaxed">${pillar.desc}</p>
+          </div>
+        </div>
+      `).join('');
+
+      // 5. Catalog Headers, Category Tabs & Sort Options
+      document.getElementById('catalog-eyebrow').textContent = t.catalog.eyebrow;
+      document.getElementById('catalog-title').textContent = t.catalog.title;
+      document.getElementById('catalog-subtitle').textContent = t.catalog.subtitle;
+
+      const catKeys = Object.keys(t.categories);
+      document.getElementById('category-tabs').innerHTML = catKeys.map(key => {
+        const isActive = activeCategory === key;
+        return `
+          <button 
+            onclick="filterByCategory('${key}')" 
+            class="shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${isActive ? 'bg-noora-sage text-white shadow-xs' : 'bg-noora-cream hover:bg-noora-taupe/50 text-noora-charcoal'}"
+          >
+            ${t.categories[key]}
+          </button>
+        `;
+      }).join('');
+
+      const sortSelect = document.getElementById('sort-select');
+      const currentSort = sortSelect.value || 'featured';
+      sortSelect.innerHTML = t.catalog.sortOptions.map(opt => `
+        <option value="${opt.value}" ${opt.value === currentSort ? 'selected' : ''}>${opt.label}</option>
+      `).join('');
+
+      applyFiltersAndSort();
+
+      // 6. Lookbook Section
+      const lookbookImages = [
+        'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=700&q=80',
+        'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80',
+        'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=700&q=80'
+      ];
+
+      document.getElementById('lookbook-eyebrow').textContent = t.lookbook.eyebrow;
+      document.getElementById('lookbook-title').textContent = t.lookbook.title;
+      document.getElementById('lookbook-desc').textContent = t.lookbook.desc;
+
+      document.getElementById('lookbook-grid').innerHTML = t.lookbook.items.map((item, idx) => `
+        <div class="group bg-white rounded-3xl border border-noora-taupe/70 overflow-hidden shadow-xs">
+          <div class="aspect-[4/5] overflow-hidden bg-noora-cream relative">
+            <img 
+              src="${lookbookImages[idx]}" 
+              onerror="this.onerror=null;this.src='https://placehold.co/600x750/D0C9C0/2C2C2C?text=Noora+Lookbook';"
+              alt="${item.title}" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-noora-ivory/95 text-[11px] font-bold uppercase tracking-wider text-noora-goldDark">
+              ${item.tag}
+            </span>
+          </div>
+          <div class="p-6 space-y-2.5">
+            <h3 class="font-serif text-2xl font-bold text-noora-charcoal">${item.title}</h3>
+            <p class="text-xs sm:text-sm text-noora-muted leading-relaxed">${item.caption}</p>
+            <button onclick="openQuickView('${item.productId}')" class="pt-1 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-noora-sage hover:text-noora-sageDark cursor-pointer">
+              <span>${t.lookbook.cta}</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      // 7. Customer Reviews
+      document.getElementById('reviews-eyebrow').textContent = t.reviews.eyebrow;
+      document.getElementById('reviews-title').textContent = t.reviews.title;
+      document.getElementById('reviews-grid').innerHTML = t.reviews.items.map(rev => `
+        <div class="bg-white border border-noora-taupe/70 rounded-3xl p-7 space-y-4 shadow-2xs">
+          <div class="flex items-center justify-between">
+            <span class="text-noora-gold text-sm tracking-widest">★★★★★</span>
+            <span class="text-[11px] bg-noora-cream px-2.5 py-1 rounded-full text-noora-muted font-medium">${t.reviews.verified}</span>
+          </div>
+          <p class="text-sm text-noora-charcoal/90 leading-relaxed italic">${rev.quote}</p>
+          <div class="pt-3 border-t border-noora-taupe/50 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-noora-sage text-white font-serif font-bold flex items-center justify-center">${rev.initials}</div>
+            <div>
+              <p class="text-sm font-bold text-noora-charcoal">${rev.name}</p>
+              <p class="text-xs text-noora-muted">${rev.meta}</p>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // 8. Footer
+      document.getElementById('footer-grid').innerHTML = `
+        <div class="lg:col-span-4 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full border border-noora-gold bg-white/5 flex items-center justify-center text-noora-gold font-serif text-2xl font-bold">N</div>
+            <div>
+              <span class="block font-serif text-2xl font-bold tracking-wider text-white leading-none">NOORA</span>
+              <span class="block text-[10px] uppercase tracking-[0.28em] text-noora-gold font-semibold mt-0.5">Modest Wear</span>
+            </div>
+          </div>
+          <p class="text-sm text-noora-taupe leading-relaxed">${t.footer.aboutText}</p>
+          <div class="text-xs text-noora-taupe space-y-1.5 pt-2">
+            <p>${t.footer.address}</p>
+            <p>${t.footer.hours}</p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-serif text-xl font-bold text-white">${t.footer.serviceTitle}</h4>
+          <ul class="space-y-2 text-xs sm:text-sm text-noora-taupe">
+            ${t.footer.services.map(s => `<li>${s}</li>`).join('')}
+            <li><button onclick="openSizeGuideModal()" class="text-noora-gold hover:underline font-medium cursor-pointer">${t.footer.sizeGuideLink}</button></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-serif text-xl font-bold text-white">${t.footer.careTitle}</h4>
+          <ul class="space-y-2 text-xs text-noora-taupe leading-relaxed">
+            ${t.footer.careList.map(c => `<li>${c}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="font-serif text-xl font-bold text-white">${t.footer.newsletterTitle}</h4>
+          <p class="text-xs text-noora-taupe leading-relaxed">${t.footer.newsletterDesc}</p>
+          <form onsubmit="handleNewsletterSubmit(event)" class="space-y-2.5">
+            <input 
+              type="email" 
+              id="newsletter-email"
+              required 
+              placeholder="${t.footer.newsletterPlaceholder}" 
+              class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-sm text-white placeholder:text-noora-taupe/70 focus:outline-none focus:border-noora-gold"
+            />
+            <button type="submit" class="w-full py-3 rounded-xl bg-noora-gold hover:bg-noora-goldDark text-white font-semibold text-sm transition-colors cursor-pointer">
+              ${t.footer.newsletterBtn}
+            </button>
+          </form>
+        </div>
+      `;
+
+      document.getElementById('footer-copyright').textContent = t.footer.copyright;
+      document.getElementById('footer-tagline').textContent = t.footer.tagline;
+
+      // 9. Cart Drawer Labels & Re-render Items
+      document.getElementById('drawer-title').textContent = t.cart.title;
+      document.getElementById('promo-code-input').placeholder = t.cart.promoPlaceholder;
+      document.getElementById('apply-promo-btn').textContent = t.cart.applyBtn;
+      document.getElementById('subtotal-label').textContent = t.cart.subtotal;
+      document.getElementById('discount-label').textContent = t.cart.discount;
+      document.getElementById('total-label').textContent = t.cart.total;
+      document.getElementById('wa-btn-label').textContent = t.cart.waBtn;
+      document.getElementById('direct-checkout-btn').textContent = t.cart.directBtn;
+
+      renderCart();
+
+      // Re-render open Quick View modal if active
+      if (activeQuickViewId) {
+        renderQuickViewContent();
+      }
+    }
+
+    // =========================================================
+    // PRODUCT CATALOG RENDERING & FILTERING
+    // =========================================================
+    function renderProducts(list) {
+      const t = i18n[currentLang];
+      const grid = document.getElementById('product-grid');
+      document.getElementById('product-count-label').textContent = t.catalog.showing(list.length);
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center space-y-3 bg-white/70 rounded-3xl border border-noora-taupe/60">
+            <p class="font-serif text-2xl font-bold text-noora-charcoal">${t.catalog.emptyTitle}</p>
+            <p class="text-sm text-noora-muted">${t.catalog.emptyDesc}</p>
+            <button onclick="resetAllFilters()" class="mt-2 px-6 py-2.5 rounded-full bg-noora-sage text-white text-xs font-semibold cursor-pointer">
+              ${t.catalog.showAllBtn}
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = list.map(product => {
+        const opt = selectedCardOptions[product.id];
+        const selectedColor = product.colors[opt.colorIndex];
+        const isWishlisted = wishlist.includes(product.id);
+
+        let badgeClass = 'bg-noora-sage text-white';
+        if (product.badgeType === 'gold') badgeClass = 'bg-noora-gold text-white';
+        if (product.badgeType === 'warn') badgeClass = 'bg-noora-charcoal text-amber-200';
+
+        return `
+          <article class="group bg-white rounded-3xl border border-noora-taupe/70 overflow-hidden shadow-2xs hover:shadow-xl hover:border-noora-gold/60 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <!-- Image Frame -->
+              <div class="relative aspect-[3/4] bg-noora-cream overflow-hidden">
+                <img 
+                  src="${product.image}" 
+                  onerror="this.onerror=null;this.src='https://placehold.co/600x800/F3EDE2/5F7161?text=${encodeURIComponent(product.name[currentLang])}';"
+                  alt="${product.name[currentLang]}" 
+                  onclick="openQuickView('${product.id}')"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 cursor-pointer"
+                />
+
+                <!-- Badge -->
+                <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase shadow-xs ${badgeClass}">
+                  ${product.badge[currentLang]}
+                </span>
+
+                <!-- Wishlist Toggle Button -->
+                <button 
+                  onclick="toggleWishlist('${product.id}')" 
+                  aria-label="Wishlist"
+                  class="absolute top-3.5 right-3.5 w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-xs transition-transform active:scale-90 cursor-pointer ${isWishlisted ? 'text-rose-600' : 'text-noora-charcoal'}"
+                >
+                  <svg class="w-4 h-4 ${isWishlisted ? 'fill-current' : ''}" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                  </svg>
+                </button>
+
+                <!-- Quick View Button -->
+                <button 
+                  onclick="openQuickView('${product.id}')"
+                  class="absolute bottom-3.5 left-3.5 right-3.5 py-2.5 px-4 rounded-full bg-noora-ivory/95 hover:bg-white text-noora-charcoal text-xs font-semibold shadow-md backdrop-blur-xs opacity-95 sm:opacity-0 sm:group-hover:opacity-100 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  <span>${t.catalog.quickViewBtn}</span>
+                </button>
+              </div>
+
+              <!-- Card Details -->
+              <div class="p-5 space-y-3">
+                <div>
+                  <p class="text-[11px] uppercase tracking-wider text-noora-muted font-medium">${t.categories[product.categoryKey]}</p>
+                  <h3 onclick="openQuickView('${product.id}')" class="font-serif text-xl font-bold text-noora-charcoal hover:text-noora-sage transition-colors cursor-pointer leading-snug mt-0.5">
+                    ${product.name[currentLang]}
+                  </h3>
+                  <p class="text-xs text-noora-muted line-clamp-2 mt-1">${product.description[currentLang]}</p>
+                </div>
+
+                <!-- Price in RM -->
+                <div class="flex items-baseline gap-2">
+                  <span class="text-base font-bold text-noora-sageDark">${formatRM(product.price)}</span>
+                  ${product.originalPrice ? `<span class="text-xs text-noora-muted line-through">${formatRM(product.originalPrice)}</span>` : ''}
+                </div>
+
+                <!-- Color Swatches -->
+                <div class="space-y-1.5">
+                  <p class="text-[11px] text-noora-muted">${t.catalog.colorLabel} <span class="font-semibold text-noora-charcoal">${selectedColor.name[currentLang]}</span></p>
+                  <div class="flex items-center gap-2">
+                    ${product.colors.map((c, idx) => `
+                      <button 
+                        type="button"
+                        onclick="selectCardColor('${product.id}', ${idx})"
+                        title="${c.name[currentLang]}"
+                        class="w-6 h-6 rounded-full transition-transform cursor-pointer ${idx === opt.colorIndex ? 'ring-2 ring-offset-2 ring-noora-sage scale-110' : 'border border-noora-taupe hover:scale-105'}"
+                        style="background-color: ${c.hex};"
+                      ></button>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <!-- Size Pills -->
+                <div class="space-y-1.5">
+                  <p class="text-[11px] text-noora-muted">${t.catalog.sizeLabel}</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    ${product.sizes.map(sz => `
+                      <button 
+                        type="button"
+                        onclick="selectCardSize('${product.id}', '${sz}')"
+                        class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${sz === opt.size ? 'bg-noora-charcoal text-white border-noora-charcoal' : 'bg-noora-ivory text-noora-charcoal border-noora-taupe hover:border-noora-sage'}"
+                      >
+                        ${sz}
+                      </button>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add to Bag CTA -->
+            <div class="px-5 pb-5 pt-1">
+              <button 
+                onclick="addCardProductToCart('${product.id}')"
+                class="w-full py-3 px-4 rounded-full bg-noora-sage hover:bg-noora-sageDark active:scale-95 text-white text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+              >
+                ${t.catalog.addToBagBtn}
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectCardColor(productId, colorIndex) {
+      selectedCardOptions[productId].colorIndex = colorIndex;
+      applyFiltersAndSort();
+    }
+
+    function selectCardSize(productId, size) {
+      selectedCardOptions[productId].size = size;
+      applyFiltersAndSort();
+    }
+
+    function filterByCategory(catKey) {
+      activeCategory = catKey;
+      renderAllLocalizedUI();
+    }
+
+    function applyFiltersAndSort() {
+      const sortValue = document.getElementById('sort-select').value || 'featured';
+      let filtered = products.filter(p => {
+        const matchCat = activeCategory === 'All' || p.categoryKey === activeCategory;
+        const matchQuery = !searchQuery ||
+          p.name.bm.toLowerCase().includes(searchQuery) ||
+          p.name.en.toLowerCase().includes(searchQuery) ||
+          p.description.bm.toLowerCase().includes(searchQuery) ||
+          p.description.en.toLowerCase().includes(searchQuery) ||
+          p.categoryKey.toLowerCase().includes(searchQuery);
+        return matchCat && matchQuery;
+      });
+
+      if (sortValue === 'price-asc') {
+        filtered = [...filtered].sort((a, b) => a.price - b.price);
+      } else if (sortValue === 'price-desc') {
+        filtered = [...filtered].sort((a, b) => b.price - a.price);
+      }
+
+      renderProducts(filtered);
+    }
+
+    function resetAllFilters() {
+      searchQuery = '';
+      document.getElementById('search-input').value = '';
+      document.getElementById('clear-search-btn').classList.add('hidden');
+      document.getElementById('sort-select').value = 'featured';
+      filterByCategory('All');
+    }
+
+    // =========================================================
+    // WISHLIST LOGIC
+    // =========================================================
+    function toggleWishlist(productId) {
+      const product = products.find(p => p.id === productId);
+      const t = i18n[currentLang];
+      const idx = wishlist.indexOf(productId);
+      if (idx === -1) {
+        wishlist.push(productId);
+        showToast(t.toasts.addedWish(product.name[currentLang]));
+      } else {
+        wishlist.splice(idx, 1);
+        showToast(t.toasts.removedWish(product.name[currentLang]));
+      }
+      document.getElementById('wishlist-badge').textContent = wishlist.length;
+      applyFiltersAndSort();
+    }
+
+    function openWishlistModal() {
+      const t = i18n[currentLang];
+      document.getElementById('wishlist-modal-title').textContent = t.wishlist.title;
+      const container = document.getElementById('wishlist-items-container');
+
+      if (wishlist.length === 0) {
+        container.innerHTML = `<p class="text-sm text-noora-muted text-center py-8">${t.wishlist.empty}</p>`;
+      } else {
+        container.innerHTML = wishlist.map(id => {
+          const p = products.find(item => item.id === id);
+          return `
+            <div class="bg-white border border-noora-taupe/70 rounded-2xl p-3.5 flex items-center gap-3.5">
+              <img src="${p.image}" alt="${p.name[currentLang]}" class="w-14 h-18 object-cover rounded-xl bg-noora-cream" />
+              <div class="flex-1 min-w-0">
+                <h4 class="font-serif text-lg font-bold text-noora-charcoal truncate">${p.name[currentLang]}</h4>
+                <p class="text-xs font-bold text-noora-sageDark">${formatRM(p.price)}</p>
+              </div>
+              <button onclick="closeWishlistModal(); openQuickView('${p.id}')" class="px-4 py-2 rounded-full bg-noora-sage text-white text-xs font-semibold cursor-pointer">
+                ${t.wishlist.moveToBag}
+              </button>
+            </div>
+          `;
+        }).join('');
+      }
+
+      const modal = document.getElementById('wishlist-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeWishlistModal() {
+      const modal = document.getElementById('wishlist-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // =========================================================
+    // QUICK VIEW & SIZE GUIDE MODALS (CM & INCHES)
+    // =========================================================
+    let modalColorIndex = 0;
+    let modalSize = 'M';
+
+    function openQuickView(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      activeQuickViewId = productId;
+      modalColorIndex = selectedCardOptions[productId].colorIndex;
+      modalSize = selectedCardOptions[productId].size;
+
+      renderQuickViewContent();
+      const modal = document.getElementById('quick-view-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function renderQuickViewContent() {
+      const p = products.find(item => item.id === activeQuickViewId);
+      if (!p) return;
+      const t = i18n[currentLang];
+      const activeColor = p.colors[modalColorIndex];
+
+      document.getElementById('quick-view-content').innerHTML = `
+        <div class="md:col-span-5 bg-noora-cream">
+          <img 
+            src="${p.image}" 
+            onerror="this.onerror=null;this.src='https://placehold.co/600x800/F3EDE2/5F7161?text=${encodeURIComponent(p.name[currentLang])}';"
+            alt="${p.name[currentLang]}" 
+            class="w-full h-72 md:h-full object-cover"
+          />
+        </div>
+        <div class="md:col-span-7 p-6 sm:p-8 space-y-5">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-noora-goldDark">${t.categories[p.categoryKey]}</span>
+            <h3 class="font-serif text-3xl font-bold text-noora-charcoal mt-1">${p.name[currentLang]}</h3>
+            <p class="text-xs sm:text-sm text-noora-muted mt-1.5 leading-relaxed">${p.description[currentLang]}</p>
+            <div class="flex items-baseline gap-2.5 mt-2.5">
+              <span class="text-2xl font-bold text-noora-sageDark">${formatRM(p.price)}</span>
+              ${p.originalPrice ? `<span class="text-sm text-noora-muted line-through">${formatRM(p.originalPrice)}</span>` : ''}
+            </div>
+          </div>
+
+          <div class="bg-white/90 border border-noora-taupe/70 rounded-2xl p-3.5 space-y-1 text-xs">
+            <p><strong class="text-noora-charcoal">${t.modal.fabricLabel}</strong> <span class="text-noora-muted">${p.fabric[currentLang]}</span></p>
+            <p><strong class="text-noora-charcoal">${t.modal.careLabel}</strong> <span class="text-noora-muted">${p.care[currentLang]}</span></p>
+          </div>
+
+          <!-- Color Selector -->
+          <div class="space-y-2">
+            <p class="text-xs font-semibold text-noora-charcoal">${t.modal.selectColor} <span class="text-noora-sage">${activeColor.name[currentLang]}</span></p>
+            <div class="flex flex-wrap gap-2">
+              ${p.colors.map((c, idx) => `
+                <button 
+                  type="button" 
+                  onclick="updateModalColor(${idx})"
+                  class="flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium transition-all cursor-pointer ${idx === modalColorIndex ? 'border-noora-sage bg-noora-sage/10 text-noora-charcoal font-bold' : 'border-noora-taupe bg-white text-noora-muted'}"
+                >
+                  <span class="w-4 h-4 rounded-full border border-black/15" style="background-color: ${c.hex};"></span>
+                  <span>${c.name[currentLang]}</span>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Size Selector -->
+          <div class="space-y-2">
+            <p class="text-xs font-semibold text-noora-charcoal">${t.modal.selectSize} <span class="text-noora-sage">${modalSize}</span></p>
+            <div class="flex flex-wrap gap-2">
+              ${p.sizes.map(sz => `
+                <button 
+                  type="button"
+                  onclick="updateModalSize('${sz}')"
+                  class="px-4 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${sz === modalSize ? 'bg-noora-sage text-white border-noora-sage' : 'bg-white text-noora-charcoal border-noora-taupe hover:border-noora-sage'}"
+                >
+                  ${sz}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Interactive Size Chart Table (cm & inches) -->
+          <div class="space-y-1.5">
+            <p class="text-xs font-bold text-noora-charcoal">${t.modal.sizeChartTitle}</p>
+            <div class="overflow-x-auto rounded-xl border border-noora-taupe">
+              <table class="w-full text-left text-[11px]">
+                <thead class="bg-noora-cream text-noora-charcoal font-bold">
+                  <tr>
+                    <th class="py-2 px-3">${t.modal.colSize}</th>
+                    <th class="py-2 px-3">${t.modal.colBust}</th>
+                    <th class="py-2 px-3">${t.modal.colLength}</th>
+                    <th class="py-2 px-3">${t.modal.colSleeve}</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-noora-taupe/50 bg-white">
+                  ${p.sizeChart.map(row => `
+                    <tr class="${row.size === modalSize ? 'bg-noora-sage/10 font-semibold' : ''}">
+                      <td class="py-1.5 px-3">${row.size}</td>
+                      <td class="py-1.5 px-3">${row.bust}</td>
+                      <td class="py-1.5 px-3">${row.length}</td>
+                      <td class="py-1.5 px-3">${row.sleeve}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <button 
+            onclick="addModalProductToCart()"
+            class="w-full py-3.5 px-6 rounded-full bg-noora-sage hover:bg-noora-sageDark text-white font-semibold text-sm shadow-lg shadow-noora-sage/20 transition-all cursor-pointer"
+          >
+            + ${t.modal.addToBag} (${activeColor.name[currentLang]} • ${modalSize})
+          </button>
+        </div>
+      `;
+    }
+
+    function updateModalColor(idx) {
+      modalColorIndex = idx;
+      renderQuickViewContent();
+    }
+
+    function updateModalSize(sz) {
+      modalSize = sz;
+      renderQuickViewContent();
+    }
+
+    function closeQuickView() {
+      activeQuickViewId = null;
+      const modal = document.getElementById('quick-view-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function openSizeGuideModal() {
+      const t = i18n[currentLang];
+      document.getElementById('size-guide-content').innerHTML = `
+        <button onclick="closeSizeGuideModal()" aria-label="Close" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-noora-cream hover:bg-noora-taupe/50 flex items-center justify-center text-noora-charcoal cursor-pointer">✕</button>
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-noora-goldDark">Noora Fit Standard</span>
+          <h3 class="font-serif text-3xl font-bold text-noora-charcoal mt-1">${t.modal.sizeGuideHeading}</h3>
+          <p class="text-xs sm:text-sm text-noora-muted mt-1">${t.modal.sizeGuideSub}</p>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-noora-taupe">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-noora-sage text-white">
+              <tr>
+                <th class="py-3 px-4 font-semibold">${t.modal.colSize}</th>
+                <th class="py-3 px-4 font-semibold">${t.modal.colBust}</th>
+                <th class="py-3 px-4 font-semibold">${t.modal.colLength}</th>
+                <th class="py-3 px-4 font-semibold">${t.modal.colSleeve}</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-noora-taupe/60 bg-white">
+              <tr><td class="py-3 px-4 font-bold">S</td><td class="py-3 px-4">94–96 cm (37–38")</td><td class="py-3 px-4">136 cm (53.5")</td><td class="py-3 px-4">56 cm (22")</td></tr>
+              <tr><td class="py-3 px-4 font-bold">M</td><td class="py-3 px-4">100–102 cm (39.5–40")</td><td class="py-3 px-4">138 cm (54.5")</td><td class="py-3 px-4">57 cm (22.5")</td></tr>
+              <tr><td class="py-3 px-4 font-bold">L</td><td class="py-3 px-4">106–108 cm (41.5–42.5")</td><td class="py-3 px-4">141 cm (55.5")</td><td class="py-3 px-4">58 cm (23")</td></tr>
+              <tr><td class="py-3 px-4 font-bold">XL</td><td class="py-3 px-4">112–114 cm (44–45")</td><td class="py-3 px-4">143 cm (56.5")</td><td class="py-3 px-4">59 cm (23.5")</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-xs text-noora-muted bg-noora-cream p-3.5 rounded-xl leading-relaxed">${t.modal.sizeGuideNote}</p>
+      `;
+
+      const modal = document.getElementById('size-guide-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeSizeGuideModal() {
+      const modal = document.getElementById('size-guide-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // =========================================================
+    // SHOPPING BAG (CART) LOGIC (PERSISTENT ACROSS BM | EN)
+    // =========================================================
+    function addCardProductToCart(productId) {
+      const opt = selectedCardOptions[productId];
+      pushItemToCart(productId, opt.colorIndex, opt.size);
+    }
+
+    function addModalProductToCart() {
+      if (!activeQuickViewId) return;
+      const pid = activeQuickViewId;
+      pushItemToCart(pid, modalColorIndex, modalSize);
+      closeQuickView();
+      openCartDrawer();
+    }
+
+    function pushItemToCart(productId, colorIndex, size) {
+      const product = products.find(p => p.id === productId);
+      const t = i18n[currentLang];
+      const variantKey = `${productId}__${colorIndex}__${size}`;
+
+      const existing = cart.find(item => item.key === variantKey);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          key: variantKey,
+          productId: productId,
+          colorIndex: colorIndex,
+          size: size,
+          qty: 1
+        });
+      }
+
+      renderCart();
+      showToast(t.toasts.addedBag(product.name[currentLang], product.colors[colorIndex].name[currentLang], size));
+    }
+
+    function updateCartQty(key, delta) {
+      const idx = cart.findIndex(item => item.key === key);
+      if (idx === -1) return;
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) {
+        cart.splice(idx, 1);
+      }
+      renderCart();
+    }
+
+    function removeCartItem(key) {
+      cart = cart.filter(item => item.key !== key);
+      renderCart();
+    }
+
+    function applyPromoCode() {
+      const t = i18n[currentLang];
+      const input = document.getElementById('promo-code-input');
+      const statusMsg = document.getElementById('promo-status-msg');
+      const code = input.value.trim().toUpperCase();
+
+      statusMsg.classList.remove('hidden', 'text-emerald-700', 'text-red-600');
+
+      if (code === 'NOORARAYA' || code === 'NOORABERKAH') {
+        activeDiscountRate = 0.10;
+        activePromoCode = code;
+        statusMsg.textContent = t.cart.promoSuccess(code);
+        statusMsg.classList.add('text-emerald-700');
+      } else if (code === '') {
+        activeDiscountRate = 0;
+        activePromoCode = '';
+        statusMsg.textContent = t.cart.promoEmpty;
+        statusMsg.classList.add('text-red-600');
+      } else {
+        activeDiscountRate = 0;
+        activePromoCode = '';
+        statusMsg.textContent = t.cart.promoInvalid;
+        statusMsg.classList.add('text-red-600');
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      const t = i18n[currentLang];
+      const container = document.getElementById('cart-items-container');
+      const badge = document.getElementById('cart-badge');
+      const drawerCount = document.getElementById('drawer-count');
+      const subtotalEl = document.getElementById('cart-subtotal');
+      const discountRow = document.getElementById('discount-row');
+      const discountEl = document.getElementById('cart-discount');
+      const totalEl = document.getElementById('cart-total-price');
+      const waBtn = document.getElementById('wa-checkout-btn');
+      const directBtn = document.getElementById('direct-checkout-btn');
+      const shippingBar = document.getElementById('shipping-progress-bar');
+
+      let totalQty = 0;
+      let subtotal = 0;
+
+      cart.forEach(item => {
+        const p = products.find(prod => prod.id === item.productId);
+        totalQty += item.qty;
+        subtotal += p.price * item.qty;
+      });
+
+      const discountAmount = Math.round(subtotal * activeDiscountRate * 100) / 100;
+      const finalTotal = subtotal - discountAmount;
+
+      badge.textContent = totalQty;
+      drawerCount.textContent = totalQty;
+      subtotalEl.textContent = formatRM(subtotal);
+      totalEl.textContent = formatRM(finalTotal);
+      waBtn.disabled = cart.length === 0;
+      directBtn.disabled = cart.length === 0;
+
+      if (discountAmount > 0) {
+        discountRow.classList.remove('hidden');
+        discountRow.classList.add('flex');
+        discountEl.textContent = '-' + formatRM(discountAmount);
+      } else {
+        discountRow.classList.add('hidden');
+        discountRow.classList.remove('flex');
+      }
+
+      // Free Shipping Progress Bar (Target: RM 250)
+      if (subtotal >= 250) {
+        shippingBar.innerHTML = t.cart.freeShipUnlocked;
+      } else if (subtotal > 0) {
+        shippingBar.innerHTML = t.cart.freeShipProgress(formatRM(250 - subtotal));
+      } else {
+        shippingBar.innerHTML = t.cart.freeShipDefault;
+      }
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center text-center py-12 space-y-3">
+            <div class="w-16 h-16 rounded-full bg-noora-cream flex items-center justify-center text-noora-sage">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+              </svg>
+            </div>
+            <p class="font-serif text-xl font-bold text-noora-charcoal">${t.cart.emptyTitle}</p>
+            <p class="text-xs text-noora-muted max-w-xs leading-relaxed">${t.cart.emptyDesc}</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cart.map(item => {
+        const p = products.find(prod => prod.id === item.productId);
+        const colorObj = p.colors[item.colorIndex];
+        return `
+          <div class="bg-white border border-noora-taupe/70 rounded-2xl p-3.5 flex gap-3.5 items-center shadow-2xs">
+            <img 
+              src="${p.image}" 
+              onerror="this.onerror=null;this.src='https://placehold.co/120x160/F3EDE2/5F7161?text=Noora';"
+              alt="${p.name[currentLang]}" 
+              class="w-16 h-20 object-cover rounded-xl bg-noora-cream shrink-0"
+            />
+            <div class="flex-1 min-w-0 space-y-1">
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-serif text-base font-bold text-noora-charcoal truncate">${p.name[currentLang]}</h4>
+                <button onclick="removeCartItem('${item.key}')" aria-label="Remove" class="text-noora-muted hover:text-red-600 text-xs p-1 cursor-pointer">✕</button>
+              </div>
+              <p class="text-[11px] text-noora-muted">${t.cart.colorShort}: <strong class="text-noora-charcoal">${colorObj.name[currentLang]}</strong> • ${t.cart.sizeShort}: <strong class="text-noora-charcoal">${item.size}</strong></p>
+              <div class="flex items-center justify-between pt-1">
+                <span class="text-xs font-bold text-noora-sageDark">${formatRM(p.price * item.qty)}</span>
+                <div class="flex items-center gap-1.5 bg-noora-ivory border border-noora-taupe rounded-full px-1.5 py-0.5">
+                  <button onclick="updateCartQty('${item.key}', -1)" class="w-5 h-5 rounded-full hover:bg-noora-cream text-noora-charcoal font-bold text-xs cursor-pointer">-</button>
+                  <span class="w-5 text-center text-xs font-bold text-noora-charcoal">${item.qty}</span>
+                  <button onclick="updateCartQty('${item.key}', 1)" class="w-5 h-5 rounded-full hover:bg-noora-cream text-noora-charcoal font-bold text-xs cursor-pointer">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // =========================================================
+    // WHATSAPP CHECKOUT & DIRECT CHECKOUT MODALS
+    // =========================================================
+    let latestWaOrderText = '';
+
+    function checkoutViaWhatsApp() {
+      if (cart.length === 0) return;
+      const t = i18n[currentLang];
+
+      let subtotal = 0;
+      const itemLines = cart.map((item, idx) => {
+        const p = products.find(prod => prod.id === item.productId);
+        const colorName = p.colors[item.colorIndex].name[currentLang];
+        const lineTotal = p.price * item.qty;
+        subtotal += lineTotal;
+
+        if (currentLang === 'bm') {
+          return `${idx + 1}. *${p.name.bm}*\n   • Warna: ${colorName} | Saiz: ${item.size}\n   • Kuantiti: ${item.qty} helai (${formatRM(lineTotal)})`;
+        } else {
+          return `${idx + 1}. *${p.name.en}*\n   • Colour: ${colorName} | Size: ${item.size}\n   • Quantity: ${item.qty} pc(s) (${formatRM(lineTotal)})`;
+        }
+      });
+
+      const discountAmount = Math.round(subtotal * activeDiscountRate * 100) / 100;
+      const finalTotal = subtotal - discountAmount;
+      const shippingStatus = subtotal >= 250
+        ? (currentLang === 'bm' ? 'PERCUMA (Melebihi RM 250)' : 'FREE (Above RM 250)')
+        : (currentLang === 'bm' ? 'Mengikut lokasi penghantaran' : 'Calculated by postcode');
+
+      if (currentLang === 'bm') {
+        latestWaOrderText = [
+          'Assalamualaikum Perunding *Noora Modest Wear* ✨',
+          'Saya ingin membuat tempahan bagi koleksi berikut:',
+          '',
+          ...itemLines,
+          '',
+          `Jumlah Kecil: ${formatRM(subtotal)}`,
+          ...(discountAmount > 0 ? [`Baucar (${activePromoCode}): -${formatRM(discountAmount)}`] : []),
+          `Penghantaran: ${shippingStatus}`,
+          `*Jumlah Keseluruhan: ${formatRM(finalTotal)}*`,
+          '',
+          'Butiran Penerima:',
+          'Nama: ',
+          'Alamat & Poskod: '
+        ].join('\n');
+      } else {
+        latestWaOrderText = [
+          'Assalamualaikum *Noora Modest Wear* Concierge ✨',
+          'I would like to place an order for the following pieces:',
+          '',
+          ...itemLines,
+          '',
+          `Subtotal: ${formatRM(subtotal)}`,
+          ...(discountAmount > 0 ? [`Voucher (${activePromoCode}): -${formatRM(discountAmount)}`] : []),
+          `Shipping: ${shippingStatus}`,
+          `*Total Payable: ${formatRM(finalTotal)}*`,
+          '',
+          'Delivery Details:',
+          'Recipient Name: ',
+          'Full Address & Postcode: '
+        ].join('\n');
+      }
+
+      const waUrl = `https://wa.me/${SELLER_WHATSAPP_NUMBER}?text=${encodeURIComponent(latestWaOrderText)}`;
+
+      closeCartDrawer();
+      document.getElementById('checkout-modal-content').innerHTML = `
+        <div class="flex items-center justify-between">
+          <h3 class="font-serif text-2xl font-bold text-noora-charcoal">${t.checkout.waModalTitle}</h3>
+          <button onclick="closeCheckoutModal()" class="text-noora-muted hover:text-noora-charcoal cursor-pointer">✕</button>
+        </div>
+        <p class="text-xs text-noora-muted leading-relaxed">${t.checkout.waModalDesc}</p>
+        <pre class="bg-white border border-noora-taupe rounded-2xl p-4 text-xs text-noora-charcoal whitespace-pre-wrap font-sans leading-relaxed max-h-60 overflow-y-auto">${latestWaOrderText}</pre>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-5 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-sm text-center shadow-md">
+            ${t.checkout.waOpenBtn}
+          </a>
+          <button onclick="copyTextFallback(latestWaOrderText, i18n[currentLang].toasts.copiedText)" class="py-3 px-5 rounded-full bg-noora-cream hover:bg-noora-taupe/50 border border-noora-taupe text-noora-charcoal font-semibold text-sm cursor-pointer">
+            ${t.checkout.copyBtn}
+          </button>
+        </div>
+      `;
+
+      const modal = document.getElementById('checkout-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    }
+
+    function openDirectCheckoutModal() {
+      if (cart.length === 0) return;
+      const t = i18n[currentLang];
+      const subtotal = cart.reduce((sum, item) => {
+        const p = products.find(prod => prod.id === item.productId);
+        return sum + (p.price * item.qty);
+      }, 0);
+      const discountAmount = Math.round(subtotal * activeDiscountRate * 100) / 100;
+      const finalTotal = subtotal - discountAmount;
+
+      closeCartDrawer();
+      document.getElementById('checkout-modal-content').innerHTML = `
+        <div class="flex items-center justify-between">
+          <h3 class="font-serif text-2xl font-bold text-noora-charcoal">${t.checkout.directTitle}</h3>
+          <button onclick="closeCheckoutModal()" class="text-noora-muted hover:text-noora-charcoal cursor-pointer">✕</button>
+        </div>
+        <p class="text-xs text-noora-muted">${t.checkout.directSub}</p>
+        <form onsubmit="submitDirectOrder(event)" class="space-y-3.5 text-xs sm:text-sm">
+          <div>
+            <label class="block font-semibold text-noora-charcoal mb-1">${t.checkout.nameLabel}</label>
+            <input type="text" required class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-noora-taupe focus:outline-none focus:border-noora-sage" />
+          </div>
+          <div>
+            <label class="block font-semibold text-noora-charcoal mb-1">${t.checkout.phoneLabel}</label>
+            <input type="tel" required placeholder="+601..." class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-noora-taupe focus:outline-none focus:border-noora-sage" />
+          </div>
+          <div>
+            <label class="block font-semibold text-noora-charcoal mb-1">${t.checkout.addressLabel}</label>
+            <textarea rows="2" required class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-noora-taupe focus:outline-none focus:border-noora-sage"></textarea>
+          </div>
+          <div>
+            <label class="block font-semibold text-noora-charcoal mb-1">${t.checkout.paymentLabel}</label>
+            <select class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-noora-taupe focus:outline-none focus:border-noora-sage">
+              <option>FPX Online Banking (Maybank2u, CIMB Clicks, Bank Islam)</option>
+              <option>Touch 'n Go eWallet / GrabPay / DuitNow QR</option>
+              <option>Visa / Mastercard</option>
+            </select>
+          </div>
+          <div class="pt-2 border-t border-noora-taupe/60 flex items-center justify-between font-bold text-base">
+            <span>${t.cart.total}</span>
+            <span class="font-serif text-xl text-noora-sageDark">${formatRM(finalTotal)}</span>
+          </div>
+          <button type="submit" class="w-full py-3.5 rounded-full bg-noora-sage hover:bg-noora-sageDark text-white font-semibold text-sm shadow-md cursor-pointer">
+            ${t.checkout.confirmOrderBtn}
+          </button>
+        </form>
+      `;
+
+      const modal = document.getElementById('checkout-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function submitDirectOrder(e) {
+      e.preventDefault();
+      const t = i18n[currentLang];
+      cart = [];
+      activeDiscountRate = 0;
+      activePromoCode = '';
+      renderCart();
+
+      document.getElementById('checkout-modal-content').innerHTML = `
+        <div class="text-center py-6 space-y-4">
+          <div class="w-16 h-16 rounded-full bg-noora-sage/15 text-noora-sage flex items-center justify-center mx-auto text-2xl font-bold">✓</div>
+          <h3 class="font-serif text-3xl font-bold text-noora-charcoal">${t.checkout.orderConfirmedTitle}</h3>
+          <p class="text-xs sm:text-sm text-noora-muted leading-relaxed">${t.checkout.orderConfirmedDesc}</p>
+          <button onclick="closeCheckoutModal()" class="px-8 py-3 rounded-full bg-noora-sage text-white text-sm font-semibold cursor-pointer">OK</button>
+        </div>
+      `;
+    }
+
+    function closeCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // =========================================================
+    // DRAWER, SEARCH, CLIPBOARD & TOAST HELPERS
+    // =========================================================
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartOverlay = document.getElementById('cart-overlay');
+
+    function openCartDrawer() {
+      cartOverlay.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        cartOverlay.classList.remove('opacity-0');
+        cartDrawer.classList.remove('translate-x-full');
+      });
+    }
+
+    function closeCartDrawer() {
+      cartOverlay.classList.add('opacity-0');
+      cartDrawer.classList.add('translate-x-full');
+      setTimeout(() => cartOverlay.classList.add('hidden'), 300);
+    }
+
+    document.getElementById('open-cart-btn').addEventListener('click', openCartDrawer);
+    document.getElementById('close-cart-btn').addEventListener('click', closeCartDrawer);
+    cartOverlay.addEventListener('click', closeCartDrawer);
+
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    function closeMobileMenu() {
+      document.getElementById('mobile-menu').classList.add('hidden');
+    }
+
+    document.getElementById('toggle-search-btn').addEventListener('click', () => {
+      const bar = document.getElementById('search-bar-container');
+      bar.classList.toggle('hidden');
+      if (!bar.classList.contains('hidden')) {
+        document.getElementById('search-input').focus();
+      }
+    });
+
+    document.getElementById('search-input').addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (searchQuery) clearBtn.classList.remove('hidden');
+      else clearBtn.classList.add('hidden');
+      applyFiltersAndSort();
+    });
+
+    function clearSearch() {
+      searchQuery = '';
+      document.getElementById('search-input').value = '';
+      document.getElementById('clear-search-btn').classList.add('hidden');
+      applyFiltersAndSort();
+    }
+
+    function copyTextFallback(text, successMsg) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg);
+      } catch (err) {
+        showToast('Failed to copy');
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function copyVoucherCode(code) {
+      copyTextFallback(code, i18n[currentLang].toasts.copiedCode(code));
+    }
+
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('newsletter-email');
+      showToast(i18n[currentLang].toasts.newsletterOk(emailInput.value));
+      emailInput.value = '';
+    }
+
+    let toastTimer;
+    function showToast(msg) {
+      const box = document.getElementById('toast-box');
+      document.getElementById('toast-message').textContent = msg;
+      box.classList.remove('translate-y-20', 'opacity-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        box.classList.add('translate-y-20', 'opacity-0');
+      }, 2800);
+    }
+
+    // Initialize Default Language (Bahasa Melayu) on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAllLocalizedUI();
+    });
+  </script>
+</body>
+</html>
